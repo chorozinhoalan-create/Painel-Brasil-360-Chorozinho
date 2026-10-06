@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel Saúde Brasil 360 — Componente Qualidade da APS</title>
+<style>
+:root{
+  color-scheme: light;
+  --surface-1:#fcfcfb; --plane:#f9f9f7;
+  --text-primary:#0b0b0b; --text-secondary:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --border:rgba(11,11,11,0.10);
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --s5:#e87ba4; --s6:#008300; --s7:#4a3aa7; --s8:#e34948;
+  --good:#0ca30c; --warning:#fab219; --serious:#ec835a; --critical:#d03b3b;
+  --success-text:#006300;
+  --radius:10px;
+  --logo:url('data:image/png;base64,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');
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --surface-1:#1a1a19; --plane:#0d0d0d;
+  --text-primary:#ffffff; --text-secondary:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767;
+  --success-text:#0ca30c;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--plane);color:var(--text-primary);
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:15px;line-height:1.5}
+.wrap{max-width:1320px;margin:0 auto;padding:0 20px 64px}
+
+header.top{background:var(--surface-1);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:40}
+.topinner{max-width:1320px;margin:0 auto;padding:12px 20px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:11px;margin-right:auto}
+.brand .txt{display:flex;flex-direction:column;gap:2px}
+.brand h1{margin:0;font-size:18px;letter-spacing:-0.01em}
+.brand .sub{font-size:12.5px;color:var(--text-secondary)}
+/* marca institucional, aplicada como máscara para acompanhar o tema */
+.logo{display:inline-block;background-color:currentColor;
+  -webkit-mask:var(--logo) center/contain no-repeat; mask:var(--logo) center/contain no-repeat;
+  flex:none}
+.brand .logo{width:30px;height:30px;color:var(--text-primary);opacity:.9}
+.footer .logo{width:34px;height:34px;color:var(--muted);opacity:.55;margin-bottom:10px}
+@media(max-width:520px){.brand .logo{width:26px;height:26px}}
+.btn{font:inherit;font-size:13px;padding:7px 12px;border-radius:8px;border:1px solid var(--border);
+  background:var(--surface-1);color:var(--text-primary);cursor:pointer;white-space:nowrap}
+.btn:hover{background:var(--plane)}
+.btn.primary{background:var(--s1);color:#fff;border-color:transparent}
+.btn.primary:hover{filter:brightness(1.07)}
+
+nav.tabs{background:var(--surface-1);border-bottom:1px solid var(--border);overflow-x:auto;position:sticky;top:57px;z-index:35}
+.tabsinner{max-width:1320px;margin:0 auto;padding:0 20px;display:flex;gap:1px}
+.tab{font:inherit;font-size:13px;padding:10px 11px;border:0;background:none;color:var(--text-secondary);
+  cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
+.tab:hover{color:var(--text-primary)}
+.tab[aria-selected="true"]{color:var(--text-primary);border-bottom-color:var(--s1);font-weight:600}
+.tab .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--axis);margin-right:5px;vertical-align:middle}
+.tab .dot.on{background:var(--good)}
+
+section.panel{display:none;padding-top:20px}
+section.panel.active{display:block}
+.card{background:var(--surface-1);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;margin-bottom:16px}
+.card h2{margin:0 0 4px;font-size:16px;letter-spacing:-0.01em}
+.card h3{margin:18px 0 2px;font-size:14px}
+.card .desc{margin:0 0 14px;font-size:13px;color:var(--text-secondary)}
+.grid{display:grid;gap:14px}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:980px){.g4{grid-template-columns:repeat(2,1fr)}.g3,.g2{grid-template-columns:1fr}}
+@media(max-width:560px){.g4{grid-template-columns:1fr}}
+
+.tile{background:var(--surface-1);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px}
+.tile .lab{font-size:12px;color:var(--text-secondary);margin-bottom:6px;display:block}
+.tile .val{font-size:30px;font-weight:600;letter-spacing:-0.02em;line-height:1.1}
+.tile .val small{font-size:14px;font-weight:500;color:var(--text-secondary);margin-left:3px}
+.tile .foot{font-size:12px;color:var(--muted);margin-top:5px}
+
+.hero{display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+.heronum{font-size:60px;font-weight:600;letter-spacing:-0.03em;line-height:1}
+.heronum small{font-size:19px;color:var(--text-secondary);font-weight:500}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;
+  padding:4px 11px;border-radius:999px;border:1px solid var(--border)}
+.b-otimo{background:color-mix(in srgb,var(--good) 14%,transparent);color:var(--success-text)}
+.b-bom{background:color-mix(in srgb,var(--s1) 14%,transparent);color:var(--s1)}
+.b-suf{background:color-mix(in srgb,var(--warning) 20%,transparent);color:#7a5300}
+.b-reg{background:color-mix(in srgb,var(--critical) 14%,transparent);color:var(--critical)}
+:root[data-theme="dark"] .b-suf{color:var(--warning)}
+
+.bars{display:flex;flex-direction:column;gap:2px}
+.barrow{display:grid;grid-template-columns:300px 1fr 62px;gap:12px;align-items:center;padding:3px 0;border-radius:6px}
+.barrow.clickable{cursor:pointer}
+.barrow.clickable:hover{background:color-mix(in srgb,var(--s1) 7%,transparent)}
+.barrow .name{font-size:12.5px;color:var(--text-secondary);text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.barrow .track{height:20px;background:var(--grid);border-radius:4px;position:relative;overflow:hidden}
+.barrow .fill{height:100%;border-radius:0 4px 4px 0;background:var(--s1);transition:width .35s ease}
+.barrow .num{font-size:12.5px;font-variant-numeric:tabular-nums;font-weight:600}
+@media(max-width:640px){.barrow{grid-template-columns:120px 1fr 52px}}
+
+.tablewrap{overflow:auto;max-height:640px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface-1)}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--grid);white-space:nowrap}
+th{position:sticky;top:0;background:var(--surface-1);font-size:11.5px;text-transform:uppercase;
+  letter-spacing:.04em;color:var(--muted);cursor:pointer;z-index:2}
+th:hover{color:var(--text-primary)}
+tbody tr:hover{background:color-mix(in srgb,var(--s1) 6%,transparent)}
+td.num{font-variant-numeric:tabular-nums;text-align:right}
+.chip{display:inline-block;font-size:11px;font-weight:600;padding:2px 7px;border-radius:999px;font-variant-numeric:tabular-nums}
+.ok{background:color-mix(in srgb,var(--good) 16%,transparent);color:var(--success-text)}
+.no{background:color-mix(in srgb,var(--critical) 14%,transparent);color:var(--critical)}
+.na{background:var(--grid);color:var(--muted)}
+.info{background:color-mix(in srgb,var(--s1) 14%,transparent);color:var(--s1)}
+.pillrow{display:flex;gap:5px;flex-wrap:nowrap;align-items:center}
+.pill{min-width:26px;height:26px;padding:0 6px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;
+  gap:3px;font-size:12.5px;font-weight:700;border:1px solid transparent;white-space:nowrap}
+.pill .pv{font-size:11.5px;font-weight:600;font-variant-numeric:tabular-nums}
+.pill.y{background:var(--good);color:#fff}
+.pill.n{background:color-mix(in srgb,var(--critical) 22%,transparent);color:var(--critical);border-color:color-mix(in srgb,var(--critical) 40%,transparent)}
+.pill.p{background:var(--grid);color:var(--muted)}
+.pill.x{background:transparent;color:var(--axis);border:1px dashed var(--axis)}
+
+.filters{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-bottom:14px}
+.fgroup{display:flex;flex-direction:column;gap:4px}
+.fgroup label{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+select,input[type=search],input[type=number],input[type=text]{font:inherit;font-size:13px;padding:6px 9px;border-radius:8px;
+  border:1px solid var(--border);background:var(--surface-1);color:var(--text-primary);min-width:140px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--text-secondary);margin:10px 0 0}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:11px;height:11px;border-radius:3px;display:inline-block}
+
+.empty{border:1px dashed var(--axis);border-radius:var(--radius);padding:26px;text-align:center;color:var(--text-secondary);font-size:13.5px}
+.note{font-size:12.5px;color:var(--text-secondary);background:color-mix(in srgb,var(--s1) 6%,transparent);
+  border-left:3px solid var(--s1);padding:10px 14px;border-radius:0 8px 8px 0;margin:14px 0}
+.note.warn{background:color-mix(in srgb,var(--warning) 12%,transparent);border-left-color:var(--warning)}
+.pend{border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:8px;background:var(--surface-1)}
+.pend summary{cursor:pointer;font-size:13.5px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.pend summary::-webkit-details-marker{display:none}
+.pend .names{margin-top:10px;font-size:12.5px;color:var(--text-secondary);line-height:1.9}
+.pend .nm{display:inline-block;background:var(--plane);border:1px solid var(--border);border-radius:6px;padding:2px 8px;margin:0 4px 4px 0}
+/* checklist de pendências */
+.pendtools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.pbar{flex:1;min-width:180px;height:8px;background:var(--grid);border-radius:999px;overflow:hidden}
+.pbar > i{display:block;height:100%;background:var(--good);border-radius:999px;transition:width .3s ease}
+.plist{margin-top:10px;display:flex;flex-direction:column;gap:2px;max-height:420px;overflow:auto}
+.pitem{display:grid;grid-template-columns:22px 1fr auto;gap:10px;align-items:center;padding:6px 8px;
+  border-radius:7px;cursor:pointer;font-size:13px}
+.pitem:hover{background:color-mix(in srgb,var(--s1) 7%,transparent)}
+.pitem input{width:16px;height:16px;accent-color:var(--good);cursor:pointer;margin:0}
+.pitem .who{font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pitem .meta{font-size:12px;color:var(--text-secondary);white-space:nowrap}
+.pitem.done .who,.pitem.done .meta{text-decoration:line-through;color:var(--muted)}
+.pitem.done{background:color-mix(in srgb,var(--good) 8%,transparent)}
+.pitem .tag{font-size:10.5px;font-weight:700;padding:1px 6px;border-radius:999px;text-transform:uppercase;letter-spacing:.03em}
+.pitem .tag.v{background:color-mix(in srgb,var(--critical) 16%,transparent);color:var(--critical)}
+.pitem .tag.a{background:var(--grid);color:var(--muted)}
+.psearch{margin:8px 0 0;width:100%}
+@media(max-width:640px){.pitem{grid-template-columns:22px 1fr}.pitem .meta{display:none}}
+.footer{font-size:12px;color:var(--muted);text-align:center;padding:26px 0 0;line-height:1.7}
+.k{font-weight:600;color:var(--text-primary)}
+.maprow{display:grid;grid-template-columns:230px 1fr 110px;gap:10px;align-items:center;padding:5px 0;border-bottom:1px solid var(--grid)}
+.maprow:last-child{border-bottom:0}
+.maprow .mk{font-size:12.5px}
+.maprow select{width:100%;min-width:0}
+@media(max-width:700px){.maprow{grid-template-columns:1fr}}
+#drop{position:fixed;inset:0;background:color-mix(in srgb,var(--s1) 22%,transparent);z-index:99;
+  display:none;align-items:center;justify-content:center;font-size:20px;font-weight:600}
+#drop.on{display:flex}
+@media print{header.top,nav.tabs,.filters,.btn{display:none!important} section.panel{display:block!important}
+  .tablewrap{max-height:none} body{background:#fff}}
+</style>
+</head>
+<body>
+<div id="drop">Solte os arquivos CSV do e-SUS aqui</div>
+
+<header class="top">
+  <div class="topinner">
+    <div class="brand">
+      <i class="logo" role="img" aria-label="Marca institucional"></i>
+      <div class="txt">
+        <h1>Painel Saúde Brasil 360</h1>
+        <div class="sub" id="ctx">Nenhum relatório carregado</div>
+      </div>
+    </div>
+    <button class="btn primary" id="btnLoad">Carregar CSV do e-SUS</button>
+    <button class="btn" id="btnExport">Exportar pendências</button>
+    <button class="btn" id="btnPrint">Imprimir</button>
+    <button class="btn" id="btnTheme">Tema</button>
+    <input type="file" id="file" accept=".csv,text/csv" multiple hidden>
+    <input type="file" id="fileProg" accept=".json,application/json" hidden>
+  </div>
+</header>
+
+<nav class="tabs"><div class="tabsinner" id="tabs"></div></nav>
+
+<div class="wrap">
+  <section class="panel active" id="p-geral"></section>
+  <section class="panel" id="p-C1"></section>
+  <section class="panel" id="p-C2"></section>
+  <section class="panel" id="p-C3"></section>
+  <section class="panel" id="p-C4"></section>
+  <section class="panel" id="p-C5"></section>
+  <section class="panel" id="p-C6"></section>
+  <section class="panel" id="p-C7"></section>
+  <section class="panel" id="p-metodo"></section>
+  <div class="footer">
+    <i class="logo" role="img" aria-label="Marca institucional"></i><br>
+    Painel construído sobre o relatório de Acompanhamento de Condições de Saúde do e-SUS APS.<br>
+    Processamento 100% local no navegador. Nenhum dado pessoal é transmitido.
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   0. UTILITÁRIOS
+   ============================================================ */
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const num = v => { const n = parseInt(String(v||'').replace(/[^\d-]/g,''),10); return isNaN(n)?0:n; };
+const flt = v => { const n = parseFloat(String(v||'').replace(',','.')); return isNaN(n)?null:n; };
+const sim = v => String(v||'').trim().toUpperCase()==='SIM';
+const vazio = v => !v || String(v).trim()==='' || String(v).trim()==='-';
+
+function parseData(s){
+  if(vazio(s)) return null;
+  let m = String(s).match(/^(\d{2})\/(\d{2})\/(\d{4})/);
+  if(m) return new Date(+m[3], +m[2]-1, +m[1]);
+  m = String(s).match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if(m) return new Date(+m[1], +m[2]-1, +m[3]);
+  m = String(s).match(/(\d{2})\/(\d{2})\/(\d{4})/);
+  if(m) return new Date(+m[3], +m[2]-1, +m[1]);
+  return null;
+}
+const fmtDate = s => { const d = parseData(s); return d? d.toLocaleDateString('pt-BR') : '—'; };
+const diasEntre = (a,b) => Math.round((a-b)/86400000);
+
+/* dias desde uma data registrada em coluna, tomando como hoje a data de geração do relatório */
+function diasDesdeData(r, col, hoje){
+  if(!col) return null;
+  const d = parseData(r[col]);
+  if(!d) return Infinity;
+  return diasEntre(hoje, d);
+}
+/* colunas do tipo "Dias desde o último ..." */
+function diasDesdeCol(r, col){
+  if(!col) return null;
+  const v = r[col];
+  if(vazio(v)) return Infinity;
+  return num(v);
+}
+function idadeAnos(r, colIdade, colNasc, hoje){
+  const t = r[colIdade];
+  let m = String(t||'').match(/(\d+)\s*anos?/i);
+  if(m) return +m[1];
+  const d = parseData(r[colNasc]);
+  if(d) return Math.floor(diasEntre(hoje,d)/365.25);
+  if(/m[êe]s|dias/i.test(String(t||''))) return 0;
+  return null;
+}
+
+/* ============================================================
+   1. PARSER DO RELATÓRIO e-SUS
+   ============================================================ */
+
+function splitCsvLine(line){
+  const out=[]; let cur=""; let q=false;
+  for(let i=0;i<line.length;i++){
+    const c=line[i];
+    if(c === '"'){ if(q && line[i+1]==='"'){cur+='"';i++;} else q=!q; }
+    else if(c === ';' && !q){ out.push(cur); cur=""; }
+    else cur+=c;
+  }
+  out.push(cur); return out;
+}
+function decodeBytes(buf){
+  const bytes = new Uint8Array(buf);
+  try{ return new TextDecoder('utf-8',{fatal:true}).decode(bytes); }
+  catch(e){ return new TextDecoder('iso-8859-1').decode(bytes); }
+}
+
+function parseEsus(text, filename){
+  const lines = text.split(/\r?\n/);
+  const hi = lines.findIndex(l => /^Nome;/.test(l) || /^Nome do cidad/i.test(l));
+  if(hi < 0) throw new Error("Cabeçalho não encontrado. Este arquivo não parece ser um relatório do e-SUS APS.");
+  const vacinacao = /^Nome do cidad/i.test(lines[hi]);
+  const meta = {arquivo:filename, municipio:'', unidade:'', equipe:'', tema:'', periodo:'', gerado:'', hoje:new Date(), vacinacao};
+  for(let i=0;i<hi;i++){
+    const l = lines[i];
+    if(/^MUNIC[ÍI]PIO DE /i.test(l)) meta.municipio = l.replace(/^MUNIC[ÍI]PIO DE /i,'').replace(/;+$/,'').trim();
+    if(/^UNIDADE DE SA[ÚU]DE /i.test(l)) meta.unidade = l.replace(/^UNIDADE DE SA[ÚU]DE /i,'').replace(/;+$/,'').trim();
+    if(/^Equipe respons/i.test(l)) meta.equipe = (splitCsvLine(l)[1]||'').trim();
+    if(/^Lista tem/i.test(l)) meta.tema = (splitCsvLine(l)[1]||'').trim();
+    if(/^Grupo-alvo/i.test(l)) meta.grupo = (splitCsvLine(l)[1]||'').trim();
+    if(/^Faixa et[áa]ria/i.test(l)){
+      meta.faixaTxt = (splitCsvLine(l)[1]||'').trim();
+      const m = meta.faixaTxt.match(/(\d+)\s*(?:at[ée]|a)\s*(\d+)/);
+      meta.faixa = m ? [+m[1], +m[2]] : null;
+    }
+    if(/^Status da vacina/i.test(l)) meta.statusFiltro = (splitCsvLine(l)[1]||'').trim();
+    if(/^Per[íi]odo/i.test(l) && !meta.periodo) meta.periodo = (splitCsvLine(l)[1]||'').trim();
+    if(/^Gerado em/i.test(l)){ const p=splitCsvLine(l); meta.gerado=(p[1]||'')+' '+(p[3]||''); const d=parseData(p[1]); if(d) meta.hoje=d; }
+  }
+  const header = splitCsvLine(lines[hi]).map(s=>s.trim()).filter(h=>h);
+  const headerRaw = splitCsvLine(lines[hi]).map(s=>s.trim());
+  const rows = [];
+  for(let i=hi+1;i<lines.length;i++){
+    const l = lines[i];
+    if(!l.trim()) continue;
+    const c = splitCsvLine(l);
+    if(c.length < 8 || !c[0].trim()) continue;
+    const o = {};
+    headerRaw.forEach((h,j)=>{ if(h) o[h] = (c[j]||'').trim(); });
+    rows.push(o);
+  }
+  if(vacinacao){ meta.code = 'VAC'; return {meta, header, rows}; }
+  const hit = INDIC.find(t => t.tema && t.tema.test(meta.tema));
+  meta.code = hit ? hit.code : null;
+  return {meta, header, rows};
+}
+
+/* ============================================================
+   1b. RELATÓRIO DE BUSCA ATIVA DE VACINAÇÃO
+   ============================================================ */
+const VCOL = {nome:'Nome do cidadão', nasc:'Data de nascimento', idade:'Idade', sexo:'Sexo',
+  cpf:'CPF', cns:'CNS', cel:'Telefone celular', contato:'Telefone de contato', res:'Telefone residencial',
+  micro:'Microárea', rua:'Rua', bairro:'Bairro', status:'Status da vacina',
+  imuno:'Imunobiológico', dose:'Dose'};
+
+/* imunobiológicos que compõem a boa prática E do C2, conforme a nota metodológica:
+   pentavalente 3 doses, poliomielite inativada 3 doses, tríplice viral 2 doses e pneumocócica 2 doses */
+const VAC_PADRAO_C2 = [/penta/i, /inativada poliomielite/i, /^vacina.*poliomielite oral|^vop/i,
+  /tr[íi]plice viral/i, /tetraviral/i, /pneumo\s*10/i, /pneumo\s*20/i];
+const DOSE_PRIMARIA = /^(D|D1|D2|D3|DU)$/i;
+
+function limpaId(v){ return String(v||'').replace(/["\s.\-\/]/g,'').trim(); }
+function idVac(o, cnsCol, cpfCol, nomeCol){
+  return limpaId(o[cnsCol]) || limpaId(o[cpfCol]) || String(o[nomeCol]||'').toUpperCase().replace(/\s+/g,' ').trim();
+}
+
+/* vários relatórios de vacinação são combinados em um só conjunto de pessoas */
+function mergeVacinas(){
+  if(!STATE.vacinas.length){ STATE.vacina = null; return; }
+  const partes = STATE.vacinas.map(buildVacina);
+  const pessoas = new Map(); const rows = []; const metas = [];
+  partes.forEach(p=>{
+    metas.push(p.meta); rows.push(...p.rows);
+    p.pessoas.forEach((v,k)=>{
+      if(!pessoas.has(k)) pessoas.set(k, {...v, doses:[...v.doses]});
+      else{
+        const alvo = pessoas.get(k);
+        v.doses.forEach(d=>{ if(!alvo.doses.some(x=>x.imuno===d.imuno && x.dose===d.dose)) alvo.doses.push(d); });
+      }
+    });
+  });
+  const imunos = [...new Set([...pessoas.values()].flatMap(p=>p.doses.map(d=>d.imuno)).filter(Boolean))]
+    .sort((a,b)=>a.localeCompare(b,'pt-BR'));
+  imunos.forEach(im=>{ if(STATE.vacSel[im]===undefined) STATE.vacSel[im] = VAC_PADRAO_C2.some(re=>re.test(im)); });
+  STATE.vacina = {meta:metas[0], metas, header:partes[0].header, rows, pessoas, imunos,
+                  grupos:[...new Set(metas.map(m=>m.grupo).filter(Boolean))]};
+}
+
+function buildVacina(ds){
+  const rows = ds.rows.filter(r=> /atrasad/i.test(r[VCOL.status]||''));
+  const pessoas = new Map();
+  rows.forEach(r=>{
+    const id = idVac(r, VCOL.cns, VCOL.cpf, VCOL.nome);
+    if(!pessoas.has(id)) pessoas.set(id, {
+      id, nome:r[VCOL.nome], idade:r[VCOL.idade], nasc:r[VCOL.nasc],
+      anos: idadeAnos(r, VCOL.idade, VCOL.nasc, ds.meta.hoje),
+      meses: idadeMeses(r, VCOL.idade, VCOL.nasc, ds.meta.hoje),
+      sexo:r[VCOL.sexo]||'', micro:(r[VCOL.micro]||'').replace(/"/g,''),
+      tel:r[VCOL.cel]||r[VCOL.contato]||r[VCOL.res]||'',
+      end:(r[VCOL.rua]||'')+', '+(r[VCOL.bairro]||''), doses:[]});
+    pessoas.get(id).doses.push({imuno:r[VCOL.imuno], dose:r[VCOL.dose]});
+  });
+  const imunos = [...new Set(rows.map(r=>r[VCOL.imuno]).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
+  return {meta:ds.meta, header:ds.header, rows, pessoas, imunos};
+}
+
+function idadeMeses(r, colIdade, colNasc, hoje){
+  const t = String(r[colIdade]||'');
+  const a = (t.match(/(\d+)\s*anos?/i)||[])[1];
+  const m = (t.match(/(\d+)\s*(m[êe]s|meses)/i)||[])[1];
+  if(a!==undefined || m!==undefined) return (+(a||0))*12 + (+(m||0));
+  const d = parseData(r[colNasc]);
+  return d ? Math.floor(diasEntre(hoje,d)/30.44) : null;
+}
+/* doses atrasadas que impactam a prática E do C2 */
+function dosesC2(pessoa){
+  return pessoa.doses.filter(d=> STATE.vacSel[d.imuno] &&
+    (!STATE.vacSoPrimaria || DOSE_PRIMARIA.test(d.dose||'')));
+}
+function pessoaVac(idCns, idCpf, nome){
+  if(!STATE.vacina) return null;
+  const k = limpaId(idCns) || limpaId(idCpf) || String(nome||'').toUpperCase().replace(/\s+/g,' ').trim();
+  return STATE.vacina.pessoas.get(k) || null;
+}
+
+/* ============================================================
+   2. DEFINIÇÃO DOS INDICADORES
+   Fonte: notas metodológicas C1 a C7 do Componente Qualidade da APS
+   ============================================================ */
+const P = {  /* colunas comuns a todas as listas temáticas */
+  nome:      {lab:'Nome',                      pat:[/^Nome$/i]},
+  idade:     {lab:'Idade',                     pat:[/^Idade$/i]},
+  nasc:      {lab:'Data de nascimento',        pat:[/^Data de nascimento$/i]},
+  sexo:      {lab:'Sexo',                      pat:[/^Sexo$/i]},
+  micro:     {lab:'Microárea',                 pat:[/^Micro[áa]rea$/i]},
+  tel:       {lab:'Telefone celular',          pat:[/^Telefone celular$/i,/^Telefone de contato$/i]},
+  rua:       {lab:'Rua',                       pat:[/^Rua$/i]},
+  bairro:    {lab:'Bairro',                    pat:[/^Bairro$/i]},
+  cpf:       {lab:'CPF',                       pat:[/^CPF$/i]},
+  cns:       {lab:'CNS',                       pat:[/^CNS$/i]},
+  dMed:      {lab:'Dias desde atendimento médico',      pat:[/^Dias desde o [úu]ltimo atendimento m[ée]dico$/i]},
+  dEnf:      {lab:'Dias desde atendimento de enfermagem',pat:[/^Dias desde o [úu]ltimo atendimento de enfermagem$/i]},
+  dOdo:      {lab:'Dias desde atendimento odontológico', pat:[/^Dias desde o [úu]ltimo atendimento odontol/i]},
+  dVis:      {lab:'Dias desde visita domiciliar',        pat:[/^Dias desde a [úu]ltima visita domiciliar$/i]},
+  dtPesoAlt: {lab:'Data da última medição de peso e altura', pat:[/^Data da [úu]ltima medi[çc][ãa]o de peso e altura$/i]},
+  dtPA:      {lab:'Data da última medição de pressão arterial', pat:[/^Data da [úu]ltima medi[çc][ãa]o de press[ãa]o arterial$/i]},
+  peso:      {lab:'Última medição de peso',    pat:[/^[ÚU]ltima medi[çc][ãa]o de peso$/i]},
+  altura:    {lab:'Última medição de altura',  pat:[/^[ÚU]ltima medi[çc][ãa]o de altura$/i]},
+  pa:        {lab:'Última medição de pressão arterial', pat:[/^[ÚU]ltima medi[çc][ãa]o de press[ãa]o arterial$/i]},
+};
+/* colunas específicas por lista temática, com múltiplos candidatos */
+const PX = {
+  hba1c:   {lab:'Hemoglobina glicada (data ou dias)', pat:[/hemoglobina glicada/i]},
+  pes:     {lab:'Avaliação dos pés',           pat:[/avalia[çc][ãa]o d(os|e) p[ée]s/i,/exame d(os|e) p[ée]s/i,/p[ée]s? diab/i]},
+  influ:   {lab:'Vacina influenza',            pat:[/influenza/i,/gripe/i]},
+  hpv:     {lab:'Vacina HPV',                  pat:[/^HPV$/i,/vacina hpv/i,/hpv/i]},
+  citoSol: {lab:'Colo do útero, data da última solicitação', pat:[/colo d[eo] [úu]tero.*data [úu]ltima solicita/i,/citopatol.*data.*solicita/i]},
+  citoAval:{lab:'Colo do útero, data da última avaliação',   pat:[/colo d[eo] [úu]tero.*data [úu]ltima avalia/i,/citopatol.*data.*avalia/i]},
+  citoRea: {lab:'Colo do útero, data da última coleta',      pat:[/colo d[eo] [úu]tero.*data [úu]ltima (coleta|realiza)/i]},
+  mamaSol: {lab:'Mama, data da última solicitação',          pat:[/mama.*data [úu]ltima solicita/i,/mamografia.*solicita/i]},
+  mamaRea: {lab:'Mama, data da última realização',           pat:[/mama.*data [úu]ltima realiza/i,/mamografia.*realiza/i]},
+  mamaAval:{lab:'Mama, data da última avaliação',            pat:[/mama.*data [úu]ltima avalia/i,/mamografia.*avalia/i]},
+  sexrep:  {lab:'Data da última consulta de saúde sexual e reprodutiva',
+            pat:[/data da [úu]ltima consulta de sa[úu]de sexual e reprodutiva/i,/sa[úu]de sexual/i,/planejamento (familiar|reprodutiv)/i]},
+  qAtend:  {lab:'Quantidade de atendimentos',  pat:[/^Quantidade de atendimentos$/i,/quantidade de atendimentos (na |de )?(puericultura|crian)/i,/^Quantidade de consultas/i]},
+  qPesoAlt:{lab:'Quantidade de registros de peso e altura', pat:[/quantidade de medi[çc][õo]es simult[âa]neas de peso[\/\s]+altura/i,/quantidade de medi[çc][õo]es simult[âa]neas de peso e altura.*24 meses/i,/quantidade de medi[çc][õo]es de peso[\/\s]altura simult[âa]neas.*24 meses/i,/quantidade de registros.*peso e altura/i]},
+  qVis:    {lab:'Quantidade de visitas domiciliares', pat:[/^Quantidade de visitas domiciliares$/i,/quantidade de visitas domiciliares(?!.*(pr[ée]|puerp))/i]},
+  c30d:    {lab:'1ª consulta até 30 dias de vida', pat:[/at[ée] (o )?30|primeira consulta|1[ªa] consulta/i]},
+  vacina:  {lab:'Esquema vacinal completo',    pat:[/vacina.*(em dia|completo|dose)/i,/esquema vacinal/i]},
+};
+
+/* helpers de avaliação */
+const consultaEm = (dias)=> (r,c)=>{
+  const a = diasDesdeCol(r,c.dMed), b = diasDesdeCol(r,c.dEnf);
+  if(a===null && b===null) return null;
+  return Math.min(a===null?Infinity:a, b===null?Infinity:b) <= dias;
+};
+const dataEm = (key, dias)=> (r,c,ctx)=>{
+  if(!c[key]) return null;
+  const d = diasDesdeData(r, c[key], ctx.hoje);
+  return d !== null && d <= dias;
+};
+const visitasEm = (dias)=> (r,c)=>{
+  if(!c.dVis) return null;
+  return diasDesdeCol(r,c.dVis) <= dias;
+};
+/* usa a data mais recente entre várias colunas candidatas */
+const melhorDataEm = (keys, dias)=> (r,c,ctx)=>{
+  const cols = keys.map(k=>c[k]).filter(Boolean);
+  if(!cols.length) return null;
+  const vs = cols.map(col=>{ const d = parseData(r[col]); return d? diasEntre(ctx.hoje,d) : null; })
+                 .filter(v=>v!==null);
+  return vs.length ? Math.min(...vs) <= dias : false;
+};
+/* coluna genérica que pode conter data, "SIM"/"NAO" ou quantidade */
+const registroEm = (key, dias)=> (r,c,ctx)=>{
+  const col = c[key]; if(!col) return null;
+  const v = r[col];
+  if(vazio(v)) return false;
+  if(/^(sim|s)$/i.test(v)) return true;
+  if(/^(n[ãa]o|n|nao_se_aplica)$/i.test(v)) return false;
+  const d = parseData(v);
+  if(d) return diasEntre(ctx.hoje,d) <= dias;
+  const n = num(v);
+  if(!isNaN(n) && /quantidade|doses?|n[ºo°]/i.test(col)) return n >= 1;
+  if(!isNaN(n) && /dias/i.test(col)) return n <= dias;
+  if(!isNaN(n) && /meses/i.test(col)) return n <= Math.round(dias/30);
+  return !vazio(v);
+};
+
+const INDIC = [
+{ code:'C1', nome:'Mais Acesso à Atenção Primária', tipo:'razao', tema:null,
+  resumo:'Proporção de atendimentos por demanda programada sobre o total de atendimentos da equipe.',
+  fonte:'Relatório de Produção do e-SUS APS (atendimentos individuais por tipo de demanda). Não é obtido pelo relatório de Acompanhamento de Condições de Saúde.',
+  faixas:[{max:10,cls:'reg',lab:'Regular'},{max:30,cls:'suf',lab:'Suficiente'},{max:50,cls:'bom',lab:'Bom'},{max:70,cls:'otimo',lab:'Ótimo'},{max:100,cls:'reg',lab:'Regular (acima de 70%)'}],
+  praticas:[] },
+
+{ code:'C2', nome:'Cuidado no Desenvolvimento Infantil', tipo:'praticas', tema:/crian|puericult|infant|0 a 2|dois anos/i,
+  pop:'Crianças de até 2 anos vinculadas à equipe',
+  cols:['qAtend','qPesoAlt','qVis','c30d','vacina'],
+  praticas:[
+    {id:'A',pts:20,curto:'1ª consulta até 30 dias de vida',desc:'Primeira consulta presencial por médico ou enfermeiro até o 30º dia de vida',
+      ev:(r,c,ctx)=> c.c30d? registroEm('c30d',30)(r,c,ctx) : null},
+    {id:'B',pts:20,curto:'Mínimo 9 consultas até 2 anos',desc:'Pelo menos 9 consultas presenciais ou remotas por médico ou enfermeiro até os dois anos de vida',
+      ev:(r,c)=> c.qAtend? num(r[c.qAtend])>=9 : null},
+    {id:'C',pts:20,curto:'Mínimo 9 registros peso/altura',desc:'Pelo menos 9 registros simultâneos de peso e altura até os dois anos de vida',
+      ev:(r,c)=> c.qPesoAlt? num(r[c.qPesoAlt])>=9 : null},
+    {id:'D',pts:20,curto:'Mínimo 2 visitas domiciliares',desc:'Pelo menos 2 visitas domiciliares por ACS ou TACS, a primeira até 30 dias e a segunda até 6 meses de vida',
+      ev:(r,c)=> c.qVis? num(r[c.qVis])>=2 : null, parcial:'O relatório não informa a data de cada visita, apenas a quantidade. A regra dos 30 dias e dos 6 meses não é verificável aqui.'},
+    {id:'E',pts:20,curto:'Esquema vacinal completo',desc:'Vacinas contra difteria, tétano, coqueluche, hepatite B, Haemophilus influenzae b, poliomielite, sarampo, caxumba, rubéola e pneumocócica com todas as doses recomendadas até os dois anos de vida (pentavalente 3 doses, poliomielite inativada 3 doses, tríplice viral 2 doses e pneumocócica 2 doses)',
+      semDados:'Carregue o relatório de busca ativa de vacinação',
+      ev:(r,c,ctx)=> c.vacina? registroEm('vacina',99999)(r,c,ctx) : null},
+  ]},
+
+{ code:'C3', nome:'Cuidado da Gestante e da Puérpera', tipo:'c3', tema:/gesta|puerp/i,
+  pop:'Gestantes e puérperas vinculadas à equipe' },
+
+{ code:'C4', nome:'Cuidado da pessoa com Diabetes', tipo:'praticas', tema:/diabet/i,
+  pop:'Pessoas com diabetes vinculadas à equipe (CID-10 E10, E11, E14 ou CIAP-2 T89, T90)',
+  cols:['hba1c','pes'],
+  praticas:[
+    {id:'A',pts:20,curto:'Consulta nos últimos 6 meses',desc:'Pelo menos 1 consulta presencial ou remota por médico ou enfermeiro nos últimos 6 meses', ev:consultaEm(180)},
+    {id:'B',pts:15,curto:'Aferição de PA em 6 meses',desc:'Pelo menos 1 registro de aferição de pressão arterial nos últimos 6 meses', ev:dataEm('dtPA',180)},
+    {id:'C',pts:15,curto:'Peso e altura em 12 meses',desc:'Pelo menos 1 registro simultâneo de peso e altura nos últimos 12 meses', ev:dataEm('dtPesoAlt',365)},
+    {id:'D',pts:20,curto:'2 visitas domiciliares em 12 meses',desc:'Pelo menos 2 visitas domiciliares por ACS ou TACS, com intervalo mínimo de 30 dias, nos últimos 12 meses',
+      ev:visitasEm(365), parcial:'O relatório informa apenas a última visita. O painel verifica se houve visita nos últimos 12 meses, não as duas visitas com intervalo de 30 dias.'},
+    {id:'E',pts:15,curto:'Hemoglobina glicada em 12 meses',desc:'Pelo menos 1 registro de hemoglobina glicada solicitada ou avaliada nos últimos 12 meses', ev:registroEm('hba1c',365)},
+    {id:'F',pts:15,curto:'Avaliação dos pés em 12 meses',desc:'Pelo menos 1 registro de avaliação dos pés nos últimos 12 meses', ev:registroEm('pes',365)},
+  ]},
+
+{ code:'C5', nome:'Cuidado da pessoa com Hipertensão', tipo:'praticas', tema:/hipertens/i,
+  pop:'Pessoas com hipertensão vinculadas à equipe (diagnóstico ativo registrado desde 2013)',
+  cols:[],
+  praticas:[
+    {id:'A',pts:25,curto:'Consulta nos últimos 6 meses',desc:'Pelo menos 1 consulta presencial ou remota por médico ou enfermeiro nos últimos 6 meses', ev:consultaEm(180)},
+    {id:'B',pts:25,curto:'Aferição de PA em 6 meses',desc:'Pelo menos 1 registro de aferição de pressão arterial nos últimos 6 meses', ev:dataEm('dtPA',180)},
+    {id:'C',pts:25,curto:'Peso e altura em 12 meses',desc:'Pelo menos 1 registro simultâneo de peso e altura nos últimos 12 meses', ev:dataEm('dtPesoAlt',365)},
+    {id:'D',pts:25,curto:'2 visitas domiciliares em 12 meses',desc:'Pelo menos 2 visitas domiciliares por ACS ou TACS, com intervalo mínimo de 30 dias, nos últimos 12 meses',
+      ev:visitasEm(365), parcial:'O relatório informa apenas a última visita. O painel verifica se houve visita nos últimos 12 meses.'},
+  ]},
+
+{ code:'C6', nome:'Cuidado da Pessoa Idosa', tipo:'praticas', tema:/idos|60 anos|envelhec/i,
+  pop:'Pessoas com 60 anos ou mais vinculadas à equipe',
+  cols:['influ'],
+  praticas:[
+    {id:'A',pts:25,curto:'Consulta nos últimos 12 meses',desc:'Pelo menos 1 consulta presencial ou remota por médico ou enfermeiro nos últimos 12 meses', ev:consultaEm(365)},
+    {id:'B',pts:25,curto:'Peso e altura em 12 meses',desc:'Pelo menos 1 registro simultâneo de peso e altura nos últimos 12 meses', ev:dataEm('dtPesoAlt',365)},
+    {id:'C',pts:25,curto:'2 visitas domiciliares em 12 meses',desc:'Pelo menos 2 visitas domiciliares por ACS ou TACS, com intervalo mínimo de 30 dias, nos últimos 12 meses',
+      ev:visitasEm(365), parcial:'O relatório informa apenas a última visita. O painel verifica se houve visita nos últimos 12 meses.'},
+    {id:'D',pts:25,curto:'Vacina influenza em 12 meses',desc:'Registro de 1 dose de vacina contra influenza nos últimos 12 meses', ev:registroEm('influ',365)},
+  ]},
+
+{ code:'C7', nome:'Cuidado da Mulher na Prevenção do Câncer', tipo:'faixas',
+  tema:/c[âa]ncer|citopatol|rastreamento|mama|colo|sa[úu]de da mulher/i,
+  pop:'Mulheres e homens transgênero nas faixas etárias de cada boa prática',
+  obs:`<div class="note"><span class="k">Filtro obrigatório na exportação:</span> gere o relatório de Saúde da Mulher com <span class="k">faixa etária de 9 até 69 anos</span>. A prática B avalia a vacina HPV em meninas de <span class="k">9 a 14 anos</span>, faixa que fica inteiramente de fora quando a exportação começa aos 14 anos. Sem esse ajuste o denominador da prática B sai incompleto, os 30 pontos dela ficam apoiados em um punhado de adolescentes e a nota do indicador se distorce. No e-SUS APS: <span class="k">Relatórios → Acompanhamento de condições de saúde</span>, lista temática Saúde da mulher, campo Faixa etária de 9 até 69 anos, depois <span class="k">Exportar CSV</span>.</div>`,
+  cols:['citoSol','citoAval','citoRea','hpv','sexrep','mamaSol','mamaRea','mamaAval'],
+  praticas:[
+    {id:'A',pts:20,curto:'Rastreamento de colo do útero',desc:'Exame de rastreamento para câncer do colo do útero coletado, solicitado ou avaliado nos últimos 36 meses (60 meses para o teste molecular de HPV), em pessoas de 25 a 64 anos',
+      faixa:[25,64], ev:melhorDataEm(['citoSol','citoAval','citoRea'],1095)},
+    {id:'B',pts:30,curto:'Vacina HPV (9 a 14 anos)',desc:'Pelo menos 1 dose da vacina HPV, quadrivalente ou nonavalente, em crianças e adolescentes do sexo feminino de 9 a 14 anos',
+      faixa:[9,14], ev:registroEm('hpv',99999)},
+    {id:'C',pts:30,curto:'Saúde sexual e reprodutiva',desc:'Pelo menos 1 atendimento presencial ou remoto em saúde sexual e reprodutiva nos últimos 12 meses, de 14 a 69 anos',
+      faixa:[14,69], ev:melhorDataEm(['sexrep'],365)},
+    {id:'D',pts:20,curto:'Rastreamento de mama',desc:'Exame de rastreamento para câncer de mama solicitado ou avaliado nos últimos 24 meses, de 50 a 69 anos',
+      faixa:[50,69], ev:melhorDataEm(['mamaSol','mamaRea','mamaAval'],730)},
+  ]},
+];
+const byCode = c => INDIC.find(i=>i.code===c);
+
+/* ============================================================
+   3. REGRAS ESPECÍFICAS DO C3
+   ============================================================ */
+const C3COL = {
+  atendPN:'Quantidade de atendimentos no pré-natal',
+  atend12:'Quantidade de atendimentos até 12 semanas no pré-natal',
+  pa:'Quantidade de medições de pressão arterial',
+  pesoalt:'Quantidade de medições simultâneas de peso e altura',
+  vdPN:'Quantidade de visitas domiciliares no pré-natal',
+  vdPuerp:'Quantidade de visitas domiciliares no puerpério',
+  atendPuerp:'Quantidade de atendimentos no puerpério',
+  odonto:'Quantidade de atendimentos odontológicos no pré-natal',
+  dtpa:'dTpa',
+  hiv1:'Exame de HIV no primeiro trimestre', sif1:'Exame de Sífilis no primeiro trimestre)',
+  hepb1:'Exame de Hepatite B no primeiro trimestre', hepc1:'Exame de Hepatite C no primeiro trimestre',
+  hiv3:'Exame de HIV no terceiro trimestre', sif3:'Exame de Sifilis no terceiro trimestre',
+  igS:'IG (DUM) (semanas)', igES:'IG (ecografia obstétrica) (semanas)',
+  dpp:'DPP (DUM)', dppE:'DPP (ecografia obstétrica)',
+  risco:'Risco gestacional', ultPuerp:'Última consulta de puerpério',
+  micro:'Microárea', idade:'Idade', cel:'Telefone celular', contato:'Telefone de contato',
+  cpf:'CPF', cns:'CNS', rua:'Rua', bairro:'Bairro',
+  peso:'Última medição de peso', altura:'Última medição de altura',
+  paUlt:'Última medição de pressão arterial',
+  dMed:'Dias desde o último atendimento médico', dVis:'Dias desde a última visita domiciliar',
+};
+const PRAT3 = [
+  {id:'A',pts:10,curto:'1ª consulta até 12 semanas',desc:'Primeira consulta de pré-natal, presencial ou remota, por médico ou enfermeiro até a 12ª semana gestacional',devidoIG:0},
+  {id:'B',pts:9,curto:'Mínimo 7 consultas de pré-natal',desc:'No mínimo 7 consultas de pré-natal com médico ou enfermeiro durante a gestação',devidoIG:36},
+  {id:'C',pts:9,curto:'Mínimo 7 aferições de PA',desc:'No mínimo 7 registros de aferição de pressão arterial durante a gestação',devidoIG:36},
+  {id:'D',pts:9,curto:'Mínimo 7 registros peso/altura',desc:'No mínimo 7 registros simultâneos de peso e altura durante a gestação',devidoIG:36},
+  {id:'E',pts:9,curto:'Mínimo 3 visitas domiciliares',desc:'No mínimo 3 visitas domiciliares por ACS ou equipe após a primeira consulta de pré-natal',devidoIG:36},
+  {id:'F',pts:9,curto:'Vacina dTpa',desc:'Registro de vacina dTpa aplicada a partir da 20ª semana gestacional',devidoIG:20},
+  {id:'G',pts:9,curto:'Sorologias do 1º trimestre',desc:'Testes rápidos ou exames para sífilis, HIV, hepatite B e hepatite C no 1º trimestre',devidoIG:14},
+  {id:'H',pts:9,curto:'Sorologias do 3º trimestre',desc:'Testes rápidos ou exames para sífilis e HIV no 3º trimestre',devidoIG:28},
+  {id:'I',pts:9,curto:'Consulta de puerpério',desc:'No mínimo 1 consulta de puerpério com médico ou enfermeiro',devidoIG:999},
+  {id:'J',pts:9,curto:'Visita domiciliar no puerpério',desc:'No mínimo 1 visita domiciliar no puerpério',devidoIG:999},
+  {id:'K',pts:9,curto:'Saúde bucal na gestação',desc:'No mínimo 1 atendimento odontológico por cirurgião-dentista ou TSB durante a gestação',devidoIG:14},
+];
+function avaliarC3(r){
+  const C = C3COL;
+  const ig = num(r[C.igS]) || num(r[C.igES]) || 0;
+  const puerpera = num(r[C.atendPuerp])>0 || !vazio(r[C.ultPuerp]) || ig>=42;
+  const res = {
+    A: num(r[C.atend12])>=1, B: num(r[C.atendPN])>=7, C: num(r[C.pa])>=7,
+    D: num(r[C.pesoalt])>=7, E: num(r[C.vdPN])>=3, F: !vazio(r[C.dtpa]),
+    G: sim(r[C.hiv1])&&sim(r[C.sif1])&&sim(r[C.hepb1])&&sim(r[C.hepc1]),
+    H: sim(r[C.hiv3])&&sim(r[C.sif3]),
+    I: num(r[C.atendPuerp])>=1, J: num(r[C.vdPuerp])>=1, K: num(r[C.odonto])>=1
+  };
+  const devido = {};
+  PRAT3.forEach(p=>{
+    devido[p.id] = (p.id==='I'||p.id==='J') ? puerpera : (p.id==='A' ? true : ig >= p.devidoIG);
+  });
+  let bruto=0, ganho=0, possivel=0;
+  PRAT3.forEach(p=>{
+    if(res[p.id]) bruto += p.pts;
+    if(devido[p.id]){ possivel += p.pts; if(res[p.id]) ganho += p.pts; }
+  });
+  return {res, devido, ig, puerpera, bruto, ajust: possivel? Math.round(ganho/possivel*1000)/10 : 100, possivel};
+}
+
+/* ============================================================
+   4. RESOLUÇÃO DE COLUNAS
+   ============================================================ */
+function resolveCols(ds){
+  const def = byCode(ds.meta.code);
+  const need = Object.assign({}, P);
+  (def.cols||[]).forEach(k=> need[k] = PX[k]);
+  ds.colDef = need;
+  ds.col = ds.col || {};
+  Object.keys(need).forEach(k=>{
+    if(ds.colManual && ds.colManual[k] !== undefined){ ds.col[k] = ds.colManual[k] || null; return; }
+    const hit = need[k].pat.map(p=> ds.header.find(h=>p.test(h))).find(Boolean);
+    ds.col[k] = hit || null;
+  });
+}
+
+/* ============================================================
+   5. CÁLCULO GENÉRICO
+   ============================================================ */
+function classificar(v, faixas){
+  if(faixas){
+    for(const f of faixas) if(v<=f.max) return mapCls(f.cls, f.lab);
+    return mapCls('reg','Regular');
+  }
+  if(v>75) return mapCls('otimo','Ótimo');
+  if(v>50) return mapCls('bom','Bom');
+  if(v>25) return mapCls('suf','Suficiente');
+  return mapCls('reg','Regular');
+}
+function mapCls(k,lab){
+  const m = {otimo:{cls:'b-otimo',color:'var(--good)',ic:'●'}, bom:{cls:'b-bom',color:'var(--s1)',ic:'●'},
+             suf:{cls:'b-suf',color:'var(--warning)',ic:'▲'}, reg:{cls:'b-reg',color:'var(--critical)',ic:'■'}};
+  return Object.assign({k, label:lab}, m[k]);
+}
+
+function computar(ds){
+  const def = byCode(ds.meta.code);
+  if(def.tipo==='c3'){ computarC3(ds); return; }
+  resolveCols(ds);
+  const ctx = {hoje: ds.meta.hoje};
+  const n = ds.rows.length || 1;
+  ds.rows.forEach(r=>{
+    const res={}, aplic={};
+    def.praticas.forEach(p=>{
+      const idade = def.tipo==='faixas' ? idadeAnos(r, ds.col.idade, ds.col.nasc, ctx.hoje) : null;
+      const naFaixa = !p.faixa || (idade!==null && idade>=p.faixa[0] && idade<=p.faixa[1]);
+      aplic[p.id] = naFaixa;
+      res[p.id] = naFaixa ? p.ev(r, ds.col, ctx) : null;   // null = não avaliável ou fora de faixa
+    });
+    /* prática E do C2 alimentada pelo relatório de busca ativa de vacinação, quando carregado */
+    if(def.code==='C2' && STATE.vacina){
+      const pv = pessoaVac(r[ds.col.cns], r[ds.col.cpf], r[ds.col.nome]);
+      r._vac = pv;
+      r._vacDoses = pv ? dosesC2(pv) : [];
+      res.E = r._vacDoses.length === 0;
+      aplic.E = true;
+    }
+    const obtidos = def.praticas.filter(p=>res[p.id]===true).reduce((a,p)=>a+p.pts,0);
+    const avaliaveis = def.praticas.filter(p=>res[p.id]!==null).reduce((a,p)=>a+p.pts,0);
+    r._av = {res, aplic, idade: idadeAnos(r, ds.col.idade, ds.col.nasc, ctx.hoje),
+             bruto: obtidos, avaliaveis, verif: avaliaveis? Math.round(obtidos/avaliaveis*1000)/10 : null};
+  });
+
+  const pct={}, cnt={}, denom={}, naoAval={};
+  def.praticas.forEach(p=>{
+    const elig = ds.rows.filter(r=>r._av.res[p.id]!==null);
+    denom[p.id] = elig.length;
+    cnt[p.id] = elig.filter(r=>r._av.res[p.id]===true).length;
+    pct[p.id] = elig.length? cnt[p.id]/elig.length*100 : null;
+    naoAval[p.id] = elig.length===0;
+  });
+
+  let bruto;
+  if(def.tipo==='faixas'){
+    // cada prática tem seu próprio denominador (faixa etária); soma ponderada, máximo 100
+    bruto = def.praticas.reduce((a,p)=> a + (pct[p.id]===null?0:p.pts*pct[p.id]/100), 0);
+  }else{
+    bruto = ds.rows.reduce((a,r)=>a+r._av.bruto,0)/n;
+  }
+  const ptsAvaliaveis = def.praticas.filter(p=>!naoAval[p.id]).reduce((a,p)=>a+p.pts,0);
+  const verif = ptsAvaliaveis? bruto/ptsAvaliaveis*100 : null;
+
+  /* denominador truncado pelo filtro de faixa etária usado na exportação */
+  const fx = ds.meta.faixa;
+  const trunc = {};
+  def.praticas.forEach(p=>{
+    trunc[p.id] = !!(p.faixa && fx && (fx[0] > p.faixa[0] || fx[1] < p.faixa[1]));
+  });
+  const ptsIntegros = def.praticas.filter(p=>!trunc[p.id] && !naoAval[p.id]).reduce((a,p)=>a+p.pts,0);
+  let notaIntegra = null;
+  if(def.tipo==='faixas' && ptsIntegros>0 && ptsIntegros<100){
+    const soma = def.praticas.filter(p=>!trunc[p.id] && pct[p.id]!==null)
+      .reduce((a,p)=> a + p.pts*pct[p.id]/100, 0);
+    notaIntegra = soma/ptsIntegros*100;
+  }
+
+  let pendTotal=0, recuperavel=0; const pessoas=new Set(); const ganho={};
+  def.praticas.forEach(p=>{
+    const f = ds.rows.filter(r=>r._av.res[p.id]===false).length;
+    // ganho na nota da equipe se todas as pendências desta prática forem resolvidas
+    ganho[p.id] = def.tipo==='faixas'
+      ? (denom[p.id]? p.pts*f/denom[p.id] : 0)
+      : p.pts*f/n;
+    recuperavel += ganho[p.id];
+  });
+  ds.rows.forEach((r,ix)=> def.praticas.forEach(p=>{
+    if(r._av.res[p.id]===false){ pendTotal++; pessoas.add(ix); }
+  }));
+  ds.resumo = {bruto:Math.round(bruto*10)/10, verif: verif===null?null:Math.round(verif*10)/10,
+    pct, cnt, denom, naoAval, ptsAvaliaveis, pendTotal, pendPessoas:pessoas.size, ganho, recuperavel,
+    trunc, ptsIntegros, notaIntegra: notaIntegra===null?null:Math.round(notaIntegra*10)/10};
+}
+
+function computarC3(ds){
+  ds.rows.forEach(r=> r._av = avaliarC3(r));
+  const n = ds.rows.length || 1;
+  const pct={}, cnt={}, denom={};
+  PRAT3.forEach(p=>{ cnt[p.id]=ds.rows.filter(r=>r._av.res[p.id]).length; pct[p.id]=cnt[p.id]/n*100; denom[p.id]=n; });
+  let pendTotal=0, recuperavel=0; const pessoas=new Set();
+  ds.rows.forEach((r,ix)=>PRAT3.forEach(p=>{
+    if(!r._av.res[p.id] && r._av.devido[p.id]){ pendTotal++; recuperavel += p.pts/n; pessoas.add(ix); }
+  }));
+  ds.resumo = {
+    bruto: Math.round(ds.rows.reduce((a,r)=>a+r._av.bruto,0)/n*10)/10,
+    ajust: Math.round(ds.rows.reduce((a,r)=>a+r._av.ajust,0)/n*10)/10,
+    pct, cnt, denom, naoAval:{}, ptsAvaliaveis:100, pendTotal, pendPessoas:pessoas.size, recuperavel};
+}
+
+/* ============================================================
+   6. ESTADO
+   ============================================================ */
+const STATE = {datasets:{}, ordem:{}, c1:[{equipe:'', prog:'', total:''}], feito:{},
+               vacinas:[], vacina:null, vacSel:{}, vacSoPrimaria:true};
+
+/* ---------- checklist de pendências ---------- */
+function praticasDe(code){ return code==='C3' ? PRAT3 : byCode(code).praticas; }
+function colsDe(code){
+  const ds = STATE.datasets[code];
+  if(code==='C3') return {nome:'Nome', micro:C3COL.micro, tel:C3COL.cel, tel2:C3COL.contato, cpf:C3COL.cpf, cns:C3COL.cns};
+  return {nome:ds.col.nome, micro:ds.col.micro, tel:ds.col.tel, tel2:null, cpf:ds.col.cpf, cns:ds.col.cns};
+}
+/* 'ok' cumprida | 'venc' pendente e exigível | 'aven' pendente a vencer | 'na' não avaliável */
+function statusPratica(code, r, p){
+  if(code==='C3') return r._av.res[p.id] ? 'ok' : (r._av.devido[p.id] ? 'venc' : 'aven');
+  const v = r._av.res[p.id];
+  return v===true ? 'ok' : v===false ? 'venc' : 'na';
+}
+function idPessoa(code, r){
+  const c = colsDe(code);
+  return String(r[c.cns] || r[c.cpf] || r[c.nome] || '').replace(/\s+/g,' ').trim();
+}
+const chaveFeito = (code, r, pid) => code+'|'+idPessoa(code,r)+'|'+pid;
+const marcado = (code, r, pid) => !!STATE.feito[chaveFeito(code,r,pid)];
+
+function denomPratica(code, pid){
+  const ds = STATE.datasets[code];
+  if(code!=='C3' && byCode(code).tipo==='faixas') return ds.resumo.denom[pid] || ds.rows.length;
+  return ds.rows.length;
+}
+function projecao(code){
+  const ds = STATE.datasets[code];
+  let add = 0;
+  praticasDe(code).forEach(p=>{
+    const feitas = ds.rows.filter(r=> statusPratica(code,r,p)!=='ok' && statusPratica(code,r,p)!=='na' && marcado(code,r,p.id)).length;
+    add += p.pts * feitas / denomPratica(code, p.id);
+  });
+  return {nota: Math.min(100, ds.resumo.bruto + add), ganho: add};
+}
+function contagemFeito(code){
+  const ds = STATE.datasets[code];
+  let tot=0, ok=0;
+  praticasDe(code).forEach(p=> ds.rows.forEach(r=>{
+    const s = statusPratica(code,r,p);
+    if(s==='venc' || s==='aven'){ tot++; if(marcado(code,r,p.id)) ok++; }
+  }));
+  return {tot, ok};
+}
+
+/* ============================================================
+   7. ABAS
+   ============================================================ */
+function buildTabs(){
+  const items = [{id:'geral',label:'Visão geral'}]
+    .concat(INDIC.map(i=>({id:i.code,label:i.code+' · '+curtoNome(i)})))
+    .concat([{id:'metodo',label:'Metodologia'}]);
+  const cur = document.querySelector('.tab[aria-selected="true"]');
+  const sel = cur? cur.dataset.t : 'geral';
+  document.getElementById('tabs').innerHTML = items.map(it=>{
+    const on = (it.id==='C1'? STATE.c1.some(x=>+x.total>0) : !!STATE.datasets[it.id]) ? ' on':'';
+    const dot = /^C\d$/.test(it.id) ? `<i class="dot${on}"></i>` : '';
+    return `<button class="tab" role="tab" data-t="${it.id}" aria-selected="${it.id===sel}">${dot}${esc(it.label)}</button>`;
+  }).join('');
+  document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>selectTab(b.dataset.t));
+}
+const curtoNome = i => i.nome.replace('Mais Acesso à Atenção Primária','Acesso')
+  .replace('Cuidado no Desenvolvimento Infantil','Desenvolvimento Infantil')
+  .replace('Cuidado da Gestante e da Puérpera','Gestante e Puérpera')
+  .replace('Cuidado da pessoa com ','').replace('Cuidado da Pessoa Idosa','Pessoa Idosa')
+  .replace('Cuidado da Mulher na Prevenção do Câncer','Prevenção do Câncer');
+
+function selectTab(id){
+  document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected', b.dataset.t===id));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  const el = document.getElementById('p-'+id); if(el) el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ============================================================
+   8. VISÃO GERAL
+   ============================================================ */
+function notaDe(code){
+  if(code==='C1'){
+    const t = STATE.c1.reduce((a,x)=>a+(+x.total||0),0), p = STATE.c1.reduce((a,x)=>a+(+x.prog||0),0);
+    return t? Math.round(p/t*1000)/10 : null;
+  }
+  const ds = STATE.datasets[code];
+  return ds ? ds.resumo.bruto : null;
+}
+function renderOverview(){
+  const cards = INDIC.map(i=>{
+    const v = notaDe(i.code);
+    const ds = STATE.datasets[i.code];
+    if(v===null) return `<div class="tile"><span class="lab">${i.code} · ${esc(i.nome)}</span>
+      <div class="val" style="color:var(--muted);font-size:21px">Sem dados</div>
+      <div class="foot">${i.code==='C1'?'Informe os atendimentos na aba C1'
+        : (i.code==='C2'&&STATE.vacina)? `situação vacinal carregada · ${STATE.vacina.pessoas.size} crianças com atraso · falta o relatório de puericultura`
+        : 'Carregue o relatório da lista temática correspondente'}</div></div>`;
+    const c = classificar(v, i.faixas);
+    const cob = ds && ds.resumo.ptsAvaliaveis<100 ? ` · ${ds.resumo.ptsAvaliaveis}% dos pontos verificáveis` : '';
+    return `<div class="tile"><span class="lab">${i.code} · ${esc(i.nome)}</span>
+      <div class="val" style="color:${c.color}">${v.toFixed(1)}<small>${i.tipo==='razao'?'%':'/100'}</small></div>
+      <div class="foot"><span class="badge ${c.cls}" style="font-size:11px"><span>${c.ic}</span>${c.label}</span>
+      ${ds?`&nbsp;·&nbsp;${ds.rows.length} pessoas${cob}`:''}</div></div>`;
+  }).join('');
+
+  const ks = Object.keys(STATE.datasets);
+  const media = INDIC.map(i=>notaDe(i.code)).filter(v=>v!==null);
+  const geral = media.length? media.reduce((a,b)=>a+b,0)/media.length : null;
+
+  document.getElementById('p-geral').innerHTML = `
+  <div class="card">
+    <h2>Componente Qualidade da APS · sete indicadores</h2>
+    <p class="desc">Situação de cada indicador conforme os relatórios carregados. O painel identifica automaticamente
+    o indicador pela lista temática de cada arquivo do e-SUS APS.</p>
+    ${geral!==null?`<div class="hero" style="margin-bottom:18px">
+      <div><span class="lab" style="font-size:12px;color:var(--text-secondary)">Média dos indicadores com dados</span>
+      <div class="heronum" style="color:${classificar(geral).color}">${geral.toFixed(1)}<small> /100</small></div>
+      <span class="badge ${classificar(geral).cls}">${classificar(geral).ic} ${classificar(geral).label}</span></div>
+      <div style="border-left:1px solid var(--border);padding-left:24px;font-size:13px;color:var(--text-secondary);max-width:420px">
+      Média simples entre os ${media.length} indicadores já calculados. Não substitui a nota oficial do Ministério da Saúde,
+      que aplica pesos próprios e considera todas as equipes do município.</div></div>`:''}
+    <div class="grid g4">${cards}</div>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--good)"></i>Ótimo</span>
+      <span><i class="sw" style="background:var(--s1)"></i>Bom</span>
+      <span><i class="sw" style="background:var(--warning)"></i>Suficiente</span>
+      <span><i class="sw" style="background:var(--critical)"></i>Regular</span>
+      <span><i class="sw" style="background:var(--axis)"></i>Sem dados</span>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Relatórios carregados</h2>
+    <p class="desc">Cada arquivo é lido apenas no seu navegador.</p>
+    ${(ks.length||STATE.vacina)? `<div class="tablewrap"><table><thead><tr>
+      <th>Indicador</th><th>Arquivo</th><th>Unidade</th><th>Equipe</th><th>Lista temática</th><th>Gerado em</th><th class="num">Registros</th>
+      </tr></thead><tbody>${ks.map(k=>{const m=STATE.datasets[k].meta;
+        return `<tr><td class="k">${k}</td><td>${esc(m.arquivo)}</td><td>${esc(m.unidade)}</td><td>${esc(m.equipe)}</td>
+        <td>${esc(m.tema)}</td><td>${esc(m.gerado)}</td><td class="num">${STATE.datasets[k].rows.length}</td></tr>`;
+      }).join('')}${STATE.vacinas.map(v=>{const m=v.meta;
+        return `<tr><td class="k">C2 e C7 · vacinação</td><td>${esc(m.arquivo)}</td><td>${esc(m.unidade)}</td>
+        <td>${esc(m.equipe)}</td><td>Busca ativa de vacinação · ${esc(m.grupo||'')}</td><td>${esc(m.gerado)}</td>
+        <td class="num">${v.rows.length}</td></tr>`;}).join('')}</tbody></table></div>`
+      : '<div class="empty">Nenhum relatório carregado. Use o botão “Carregar CSV do e-SUS” ou arraste os arquivos para a janela.</div>'}
+    <div class="note">No e-SUS APS: <span class="k">Relatórios → Acompanhamento de condições de saúde</span>, selecione a equipe
+    e a lista temática, depois <span class="k">Exportar CSV</span>. Para a situação vacinal do C2, use
+    <span class="k">Relatórios → Busca ativa de vacinação</span>, grupo-alvo Crianças e status Atrasada.
+    Você pode carregar vários arquivos de uma vez.</div>
+  </div>`;
+}
+
+/* ============================================================
+   9. PAINEL C1 (razão, entrada manual)
+   ============================================================ */
+function renderC1(){
+  const i = byCode('C1');
+  const linhas = STATE.c1.map((x,ix)=>{
+    const pct = (+x.total)? (+x.prog)/(+x.total)*100 : null;
+    const c = pct===null? null : classificar(pct, i.faixas);
+    return `<tr><td><input type="text" data-ix="${ix}" data-f="equipe" value="${esc(x.equipe)}" placeholder="Nome da equipe"></td>
+      <td><input type="number" data-ix="${ix}" data-f="prog" value="${esc(x.prog)}" placeholder="0" min="0"></td>
+      <td><input type="number" data-ix="${ix}" data-f="total" value="${esc(x.total)}" placeholder="0" min="0"></td>
+      <td class="num">${pct===null?'—':pct.toFixed(1)+'%'}</td>
+      <td>${c?`<span class="badge ${c.cls}">${c.ic} ${c.label}</span>`:'—'}</td></tr>`;
+  }).join('');
+  const tot = STATE.c1.reduce((a,x)=>a+(+x.total||0),0), prog = STATE.c1.reduce((a,x)=>a+(+x.prog||0),0);
+  const pctG = tot? prog/tot*100 : null;
+  const cG = pctG===null? null : classificar(pctG, i.faixas);
+  const max = Math.max(...STATE.c1.map(x=>(+x.total)? (+x.prog)/(+x.total)*100 : 0), 70);
+
+  document.getElementById('p-C1').innerHTML = `
+  <div class="card">
+    <h2>C1 · Mais Acesso à Atenção Primária</h2>
+    <p class="desc">${esc(i.resumo)}</p>
+    ${pctG!==null?`<div class="hero">
+      <div><span class="lab" style="font-size:12px;color:var(--text-secondary)">Proporção de demanda programada</span>
+      <div class="heronum" style="color:${cG.color}">${pctG.toFixed(1)}<small> %</small></div>
+      <span class="badge ${cG.cls}">${cG.ic} ${cG.label}</span></div>
+      <div style="border-left:1px solid var(--border);padding-left:24px;font-size:13px;color:var(--text-secondary);max-width:430px">
+      Este é o único indicador do bloco com <span class="k">limite superior</span>. Acima de 70% a classificação volta a
+      Regular, porque uma agenda quase toda programada significa que a equipe deixou de acolher a demanda espontânea.
+      A faixa de excelência fica entre 50% e 70%.</div></div>`:''}
+    <div class="note">${esc(i.fonte)} Exporte o relatório de produção, filtre os atendimentos individuais por tipo de demanda
+    e informe abaixo os totais de cada equipe.</div>
+    <div class="tablewrap" style="max-height:none"><table>
+      <thead><tr><th>Equipe</th><th>Demanda programada</th><th>Total de atendimentos</th><th class="num">%</th><th>Classificação</th></tr></thead>
+      <tbody id="c1body">${linhas}</tbody>
+      <tfoot><tr><td class="k">Consolidado</td><td class="k">${prog}</td><td class="k">${tot}</td>
+        <td class="num k">${pctG===null?'—':pctG.toFixed(1)+'%'}</td><td>${cG?`<span class="badge ${cG.cls}">${cG.ic} ${cG.label}</span>`:'—'}</td></tr></tfoot>
+    </table></div>
+    <div style="margin-top:12px;display:flex;gap:8px">
+      <button class="btn" id="c1add">Adicionar equipe</button>
+      <button class="btn" id="c1del">Remover última</button>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Comparativo entre equipes</h2>
+    <p class="desc">A faixa de excelência do indicador vai de 50% a 70%. As linhas de referência ajudam a ver quem está fora dela.</p>
+    <div class="bars">${STATE.c1.filter(x=>+x.total>0).map(x=>{
+      const pct = (+x.prog)/(+x.total)*100, c = classificar(pct, i.faixas);
+      return `<div class="barrow"><div class="name">${esc(x.equipe||'sem nome')}</div>
+        <div class="track"><div class="fill" style="width:${Math.min(pct/max*100,100)}%;background:${c.color}"></div></div>
+        <div class="num">${pct.toFixed(0)}%</div></div>`;
+    }).join('') || '<div class="empty">Informe os atendimentos acima para gerar o comparativo.</div>'}</div>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--critical)"></i>≤10% ou &gt;70% Regular</span>
+      <span><i class="sw" style="background:var(--warning)"></i>&gt;10 a 30% Suficiente</span>
+      <span><i class="sw" style="background:var(--s1)"></i>&gt;30 a 50% Bom</span>
+      <span><i class="sw" style="background:var(--good)"></i>&gt;50 a 70% Ótimo</span>
+    </div>
+  </div>`;
+  document.querySelectorAll('#c1body input').forEach(inp=>inp.oninput=()=>{
+    STATE.c1[+inp.dataset.ix][inp.dataset.f] = inp.value;
+    const foco = inp.dataset.ix+'|'+inp.dataset.f;
+    renderC1(); renderOverview(); buildTabs();
+    const back = document.querySelector(`#c1body input[data-ix="${foco.split('|')[0]}"][data-f="${foco.split('|')[1]}"]`);
+    if(back){ back.focus(); try{ back.setSelectionRange(back.value.length, back.value.length); }catch(e){} }
+  });
+  document.getElementById('c1add').onclick = ()=>{ STATE.c1.push({equipe:'',prog:'',total:''}); renderC1(); };
+  document.getElementById('c1del').onclick = ()=>{ if(STATE.c1.length>1){ STATE.c1.pop(); renderC1(); renderOverview(); } };
+}
+
+/* ============================================================
+   10. PAINEL GENÉRICO (C2, C4, C5, C6, C7)
+   ============================================================ */
+function renderIndicador(code){
+  const def = byCode(code), p = document.getElementById('p-'+code), ds = STATE.datasets[code];
+  if(!ds){
+    p.innerHTML = `<div class="card"><h2>${code} · ${esc(def.nome)}</h2>
+      <p class="desc">População avaliada: ${esc(def.pop||'')}</p>
+      <div class="empty">Carregue o relatório de Acompanhamento de Condições de Saúde com a lista temática correspondente.</div>
+      ${def.obs||''}
+      <h3>Boas práticas que serão calculadas</h3>
+      <div class="tablewrap" style="max-height:none"><table><thead><tr><th>Prática</th><th>Descrição</th><th class="num">Pontos</th></tr></thead>
+      <tbody>${def.praticas.map(x=>`<tr><td class="k">${x.id}</td><td style="white-space:normal">${esc(x.desc)}</td><td class="num">${x.pts}</td></tr>`).join('')}
+      <tr><td colspan="2" class="k">Total</td><td class="num k">100</td></tr></tbody></table></div></div>
+      ${code==='C2'?'<div id="vacbox"></div>':''}`;
+    if(code==='C2') renderVacina();
+    return;
+  }
+  const R = ds.resumo, n = ds.rows.length;
+  const c = classificar(R.bruto);
+  const semCol = def.praticas.filter(x=>R.naoAval[x.id]);
+  const parciais = def.praticas.filter(x=>x.parcial && !R.naoAval[x.id]);
+
+  p.innerHTML = `
+  <div class="card">
+    <h2>${code} · ${esc(def.nome)}</h2>
+    <p class="desc">${esc(ds.meta.unidade)} · Equipe ${esc(ds.meta.equipe)} · Gerado em ${esc(ds.meta.gerado)}</p>
+    <div class="hero">
+      <div><span class="lab" style="font-size:12px;color:var(--text-secondary)">Pontuação do indicador</span>
+        <div class="heronum" style="color:${c.color}">${R.bruto.toFixed(1)}<small> /100</small></div>
+        <span class="badge ${c.cls}">${c.ic} ${c.label}</span></div>
+      <div style="border-left:1px solid var(--border);padding-left:24px">
+        <span class="lab" style="font-size:12px;color:var(--text-secondary)">Cobertura de verificação</span>
+        <div class="heronum" style="font-size:44px;color:${R.ptsAvaliaveis===100?'var(--good)':'var(--warning)'}">${R.ptsAvaliaveis}<small> de 100 pts</small></div>
+        <span style="font-size:12px;color:var(--text-secondary)">${R.ptsAvaliaveis===100?'todas as práticas verificáveis neste relatório':'as demais práticas dependem de colunas ausentes'}</span></div>
+      ${R.verif!==null && R.ptsAvaliaveis<100 ? `<div style="border-left:1px solid var(--border);padding-left:24px">
+        <span class="lab" style="font-size:12px;color:var(--text-secondary)">Desempenho no que é verificável</span>
+        <div class="heronum" style="font-size:44px;color:${classificar(R.verif).color}">${R.verif.toFixed(1)}<small> /100</small></div>
+        <span style="font-size:12px;color:var(--text-secondary)">projeção da nota se as demais práticas tivessem o mesmo desempenho</span></div>`:''}
+      ${R.notaIntegra!==null ? `<div style="border-left:1px solid var(--border);padding-left:24px">
+        <span class="lab" style="font-size:12px;color:var(--text-secondary)">Práticas com denominador completo</span>
+        <div class="heronum" style="font-size:44px;color:${classificar(R.notaIntegra).color}">${R.notaIntegra.toFixed(1)}<small> /100</small></div>
+        <span style="font-size:12px;color:var(--text-secondary)">${def.praticas.filter(x=>!R.trunc[x.id]).map(x=>x.id).join(', ')} · leitura confiável enquanto o filtro etário não é corrigido</span></div>`:''}
+    </div>
+    ${def.obs||''}
+    ${(()=>{ const tr = def.praticas.filter(x=>R.trunc && R.trunc[x.id]);
+      if(!tr.length) return '';
+      return `<div class="note warn"><span class="k">Denominador truncado pelo filtro de exportação:</span> o relatório foi
+        gerado com faixa etária <span class="k">${esc(ds.meta.faixaTxt||'—')}</span>, que não cobre a faixa exigida por
+        ${tr.map(x=>`${x.id} · ${esc(x.curto)} (${x.faixa[0]} a ${x.faixa[1]} anos)`).join('; ')}.
+        O percentual dessa(s) prática(s) foi calculado apenas sobre quem está no arquivo, então superestima ou
+        subestima o resultado real. Exporte um relatório adicional com a faixa etária correspondente e carregue-o
+        para corrigir. Enquanto isso, use a leitura ao lado, que considera apenas as práticas com denominador completo.</div>`;
+    })()}
+    ${semCol.length? `<div class="note warn"><span class="k">Atenção:</span> ${semCol.length} prática(s) não puderam ser
+      avaliadas porque o painel não encontrou a coluna correspondente neste relatório
+      (${semCol.map(x=>x.id+' · '+x.curto).join('; ')}). Ajuste o mapeamento de colunas no fim desta aba ou verifique se a
+      lista temática exportada inclui esses campos. A pontuação exibida trata essas práticas como zero, o que subestima a nota.</div>`:''}
+  </div>
+
+  <div class="grid g4" style="margin-bottom:16px">
+    <div class="tile"><span class="lab">Pessoas vinculadas</span><div class="val">${n}</div><div class="foot">${esc(def.pop||'')}</div></div>
+    <div class="tile"><span class="lab">Pendências identificadas</span><div class="val" style="color:var(--critical)">${R.pendTotal}</div>
+      <div class="foot">em ${R.pendPessoas} pessoas</div></div>
+    <div class="tile"><span class="lab">Pontos recuperáveis</span>
+      <div class="val" style="color:var(--s1)">+${R.recuperavel.toFixed(1)}</div><div class="foot">se todas as pendências forem resolvidas</div></div>
+    <div class="tile"><span class="lab">Prática mais crítica</span>
+      <div class="val" style="font-size:21px">${(()=>{const arr=def.praticas.filter(x=>R.pct[x.id]!==null).sort((a,b)=>R.pct[a.id]-R.pct[b.id]);
+        return arr.length? arr[0].id+' · '+arr[0].curto : '—';})()}</div>
+      <div class="foot">${(()=>{const arr=def.praticas.filter(x=>R.pct[x.id]!==null).sort((a,b)=>R.pct[a.id]-R.pct[b.id]);
+        return arr.length? R.pct[arr[0].id].toFixed(0)+'% de cumprimento' : '';})()}</div></div>
+    <div class="tile" id="proj-${code}" style="display:none"></div>
+  </div>
+
+  <div class="card">
+    <h2>Cumprimento das boas práticas</h2>
+    <p class="desc">Percentual de pessoas que cumprem cada prática${def.tipo==='faixas'?', calculado dentro da faixa etária de cada uma':''}.</p>
+    <div class="bars" id="bars-${code}"></div>
+    ${parciais.length?`<div class="note">Verificação parcial em: ${parciais.map(x=>x.id).join(', ')}. ${esc(parciais[0].parcial)}</div>`:''}
+  </div>
+
+  <div class="card">
+    <h2>Pendências nominais</h2>
+    <p class="desc">Clique em uma prática para abrir a lista e marque cada pessoa conforme a ação for realizada.
+    A marcação organiza o trabalho da equipe e projeta o efeito na nota, mas não substitui o registro no PEC.</p>
+    <div id="pend-${code}"></div>
+  </div>
+
+  <div class="card">
+    <h2>Desempenho por microárea</h2>
+    <p class="desc">Pontuação média de cada microárea, para direcionar o trabalho dos agentes comunitários.</p>
+    <div class="bars" id="micro-${code}"></div>
+  </div>
+
+  <div class="card">
+    <h2>Lista nominal</h2>
+    <div class="filters">
+      <div class="fgroup"><label>Microárea</label><select id="f1-${code}"><option value="">Todas</option>${
+        [...new Set(ds.rows.map(r=>(r[ds.col.micro]||'').replace(/"/g,'')))].sort().map(m=>`<option>${esc(m)}</option>`).join('')}</select></div>
+      <div class="fgroup"><label>Situação</label><select id="f2-${code}">
+        <option value="">Todas</option><option value="pend">Com pendência</option><option value="ok">Sem pendência</option></select></div>
+      <div class="fgroup" style="flex:1;min-width:200px"><label>Buscar</label><input type="search" id="f3-${code}" placeholder="nome, rua, telefone..."></div>
+    </div>
+    <div class="tablewrap"><table id="tab-${code}"></table></div>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--good)"></i>Cumprido</span>
+      <span><i class="sw" style="background:color-mix(in srgb,var(--critical) 22%,transparent)"></i>Pendente</span>
+      <span><i class="sw" style="background:transparent;border:1px dashed var(--axis)"></i>Fora da faixa etária ou não avaliável</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <details ${semCol.length?'open':''}>
+      <summary style="cursor:pointer;font-weight:600;font-size:16px">Mapeamento de colunas${semCol.length?` <span class="chip no">${semCol.length} ajuste(s) sugerido(s)</span>`:' <span class="chip ok">tudo detectado</span>'}</summary>
+      <p class="desc" style="margin-top:10px">O painel identifica as colunas do relatório automaticamente. Se alguma prática ficou sem
+      avaliação, escolha aqui a coluna correta e o cálculo é refeito na hora.</p>
+      <div id="map-${code}"></div>
+    </details>
+  </div>
+  ${code==='C2'?'<div id="vacbox"></div>':''}`;
+
+  renderBars(code); renderPend(code); renderMicroGen(code); renderMap(code);
+  if(code==='C2') renderVacina();
+  ['f1','f2','f3'].forEach(f=>{
+    const el = document.getElementById(f+'-'+code);
+    el[f==='f3'?'oninput':'onchange'] = ()=>renderTab(code);
+  });
+  renderTab(code);
+}
+
+function renderBars(code){
+  const def = byCode(code), ds = STATE.datasets[code], R = ds.resumo;
+  document.getElementById('bars-'+code).innerHTML = def.praticas.map(p=>{
+    let pct = R.pct[p.id];
+    let detalhe = '';
+    
+    // Para C2, mostrar estatísticas numéricas mesmo se pct é null
+    if(code==='C2' && (p.id==='B' || p.id==='C' || p.id==='D')){
+      const colMap = {B: ds.col.qAtend, C: ds.col.qPesoAlt, D: ds.col.qVis};
+      const colKey = colMap[p.id];
+      const alvo = {B: 9, C: 9, D: 2}[p.id];
+      if(colKey){
+        const vals = ds.rows.map(r=>num(r[colKey]));
+        if(vals.length>0){
+          const med = vals.reduce((a,b)=>a+b,0)/vals.length;
+          const min = Math.min(...vals);
+          const max = Math.max(...vals);
+          const comMetaAtingida = vals.filter(v=>v>=alvo).length;
+          // Se pct é null mas temos dados, calcular o percentual
+          if(pct === null){
+            pct = (comMetaAtingida/vals.length)*100;
+          }
+          detalhe = ` · min: ${min}, máx: ${max}, méd: ${med.toFixed(1)} (${comMetaAtingida}/${vals.length} ≥ ${alvo})`;
+        }
+      }
+    }
+    
+    if(pct === null) {
+      return `<div class="barrow"><div class="name">${p.id} · ${esc(p.curto)}</div>
+      <div class="track"></div><div class="num" style="color:var(--muted);font-size:11px">n/d</div></div>`;
+    }
+    
+    const c = pct>75?'var(--good)':pct>50?'var(--s1)':pct>25?'var(--warning)':'var(--critical)';
+    const tr = R.trunc && R.trunc[p.id];
+    
+    return `<div class="barrow clickable" data-p="${p.id}" title="${esc(p.desc)} — ${p.pts} pontos — denominador ${R.denom[p.id]}${tr?' (truncado pelo filtro etário da exportação)':''}">
+      <div class="name">${tr?'<span style="color:var(--warning)" title="denominador truncado">▲ </span>':''}${p.id} · ${esc(p.curto)} <span style="color:var(--muted)">(n=${R.denom[p.id]})${detalhe}</span></div>
+      <div class="track"><div class="fill" style="width:${pct}%;background:${c}"></div></div>
+      <div class="num">${pct.toFixed(0)}%</div></div>`;
+  }).join('');
+  document.querySelectorAll(`#bars-${code} .barrow.clickable`).forEach(el=>el.onclick=()=>{
+    const d = document.querySelector(`#pend-${code} details[data-p="${el.dataset.p}"]`);
+    if(d){ d.open=true; d.scrollIntoView({behavior:'smooth',block:'center'}); }
+  });
+}
+
+/* ---------- lista suspensa de pendências, com marcação de concluído ---------- */
+function renderPend(code){
+  const ds = STATE.datasets[code], prats = praticasDe(code), C = colsDe(code);
+  const el = document.getElementById('pend-'+code);
+  const cont = contagemFeito(code);
+
+  const blocos = prats.map(p=>{
+    if(ds.resumo.naoAval[p.id]) return `<div class="pend"><div style="display:flex;justify-content:space-between;gap:8px">
+      <span style="font-weight:600;font-size:13.5px">${p.id} · ${esc(p.curto)}</span>
+      <span class="chip na">${esc(p.semDados||'coluna não encontrada')}</span></div></div>`;
+    const lista = ds.rows.map((r,ix)=>({r,ix,st:statusPratica(code,r,p)})).filter(x=>x.st==='venc'||x.st==='aven')
+      .sort((a,b)=> (a.st==='venc'?0:1) - (b.st==='venc'?0:1));
+    if(!lista.length) return `<div class="pend"><div style="display:flex;justify-content:space-between;gap:8px">
+      <span style="font-weight:600;font-size:13.5px">${p.id} · ${esc(p.curto)}</span>
+      <span class="chip ok">100% cumprido</span></div></div>`;
+    const itens = lista.map(x=>{
+      const done = marcado(code, x.r, p.id);
+      const meta = code==='C3'
+        ? `MA ${esc((x.r[C.micro]||'').replace(/"/g,''))} · ${x.r._av.ig} sem · ${esc(x.r[C.tel]||x.r[C.tel2]||'sem telefone')}`
+        : `MA ${esc((x.r[C.micro]||'').replace(/"/g,''))} · ${x.r._av.idade==null?'':x.r._av.idade+' anos'} · ${esc(x.r[C.tel]||'sem telefone')}`;
+      const tag = x.st==='venc' ? '<span class="tag v">vencida</span>' : '<span class="tag a">a vencer</span>';
+      return `<label class="pitem${done?' done':''}" data-p="${p.id}" data-ix="${x.ix}" data-st="${x.st}" data-busca="${esc((x.r[C.nome]||'').toLowerCase())}">
+        <input type="checkbox" ${done?'checked':''}>
+        <span class="who">${esc(x.r[C.nome])}</span>
+        <span class="meta">${meta} ${tag}</span></label>`;
+    }).join('');
+    return `<details class="pend" data-p="${p.id}">
+      <summary><span>${p.id} · ${esc(p.curto)}</span>
+        <span>
+          <span class="chip no" data-role="venc"></span>
+          <span class="chip na" data-role="aven"></span>
+          <span class="chip ok" data-role="feitas"></span>
+          <span class="chip info" title="Ganho na pontuação da equipe se todas forem resolvidas">+${(p.pts*lista.length/denomPratica(code,p.id)).toFixed(1)} pts</span>
+        </span></summary>
+      <input type="search" class="psearch" placeholder="filtrar nomes desta prática...">
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button class="btn" data-act="all" data-p="${p.id}">Marcar todos</button>
+        <button class="btn" data-act="none" data-p="${p.id}">Desmarcar todos</button>
+      </div>
+      <div class="plist">${itens}</div>
+    </details>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div class="pendtools">
+      <span style="font-size:12.5px;color:var(--text-secondary)" id="pcount-${code}">
+        ${cont.ok} de ${cont.tot} pendências marcadas como concluídas</span>
+      <div class="pbar"><i id="pbar-${code}" style="width:${cont.tot? cont.ok/cont.tot*100:0}%"></i></div>
+      <button class="btn" data-act="save" data-code="${code}">Salvar progresso</button>
+      <button class="btn" data-act="load" data-code="${code}">Retomar progresso</button>
+      <button class="btn" data-act="clear" data-code="${code}">Limpar marcações</button>
+    </div>
+    ${blocos}`;
+
+  el.querySelectorAll('.pitem input').forEach(inp=>{
+    inp.onchange = ()=>{
+      const lab = inp.closest('.pitem');
+      const r = ds.rows[+lab.dataset.ix];
+      const k = chaveFeito(code, r, lab.dataset.p);
+      if(inp.checked) STATE.feito[k] = true; else delete STATE.feito[k];
+      lab.classList.toggle('done', inp.checked);
+      atualizarPend(code, lab.dataset.p);
+    };
+  });
+  el.querySelectorAll('.psearch').forEach(s=>{
+    s.oninput = ()=>{
+      const q = s.value.trim().toLowerCase();
+      s.closest('details').querySelectorAll('.pitem').forEach(it=>{
+        it.style.display = (!q || it.dataset.busca.includes(q)) ? '' : 'none';
+      });
+    };
+  });
+  el.querySelectorAll('button[data-act="all"],button[data-act="none"]').forEach(b=>{
+    b.onclick = ev=>{
+      ev.preventDefault();
+      const on = b.dataset.act==='all';
+      b.closest('details').querySelectorAll('.pitem').forEach(it=>{
+        if(it.style.display==='none') return;
+        const r = ds.rows[+it.dataset.ix], k = chaveFeito(code, r, it.dataset.p);
+        if(on) STATE.feito[k]=true; else delete STATE.feito[k];
+        it.classList.toggle('done', on);
+        it.querySelector('input').checked = on;
+      });
+      atualizarPend(code, b.dataset.p);
+    };
+  });
+  el.querySelector('button[data-act="save"]').onclick = ()=>salvarProgresso();
+  el.querySelector('button[data-act="load"]').onclick = ()=>document.getElementById('fileProg').click();
+  el.querySelector('button[data-act="clear"]').onclick = ()=>{
+    if(!confirm('Remover todas as marcações de concluído deste painel?')) return;
+    Object.keys(STATE.feito).forEach(k=>{ if(k.startsWith(code+'|')) delete STATE.feito[k]; });
+    renderPend(code); atualizarPend(code);
+  };
+  atualizarPend(code);
+}
+
+/* atualiza contadores e nota projetada sem fechar as listas abertas */
+function atualizarPend(code, pid){
+  const ds = STATE.datasets[code], el = document.getElementById('pend-'+code);
+  if(!el) return;
+  const alvos = pid ? [el.querySelector(`details[data-p="${pid}"]`)] : [...el.querySelectorAll('details[data-p]')];
+  alvos.filter(Boolean).forEach(d=>{
+    const itens = [...d.querySelectorAll('.pitem')];
+    const abertos = itens.filter(i=>!i.classList.contains('done'));
+    const venc = abertos.filter(i=>i.dataset.st==='venc').length;
+    const aven = abertos.filter(i=>i.dataset.st==='aven').length;
+    const feitas = itens.length - abertos.length;
+    const set = (role, txt, show)=>{ const c=d.querySelector(`[data-role="${role}"]`);
+      if(c){ c.textContent = txt; c.style.display = show? '' : 'none'; } };
+    set('venc', `${venc} vencida${venc!==1?'s':''}`, venc>0);
+    set('aven', `${aven} a vencer`, aven>0);
+    set('feitas', `${feitas} concluída${feitas!==1?'s':''}`, feitas>0);
+  });
+  const cont = contagemFeito(code);
+  const cnt = document.getElementById('pcount-'+code);
+  if(cnt) cnt.textContent = `${cont.ok} de ${cont.tot} pendências marcadas como concluídas`;
+  const bar = document.getElementById('pbar-'+code);
+  if(bar) bar.style.width = (cont.tot? cont.ok/cont.tot*100 : 0)+'%';
+  const proj = projecao(code);
+  const box = document.getElementById('proj-'+code);
+  if(box){
+    if(proj.ganho > 0){
+      const c = classificar(proj.nota);
+      box.style.display = '';
+      box.innerHTML = `<span class="lab">Nota projetada com as conclusões</span>
+        <div class="val" style="color:${c.color}">${proj.nota.toFixed(1)}<small>/100</small></div>
+        <div class="foot">+${proj.ganho.toFixed(1)} pontos sobre a nota atual · registre no PEC para valer</div>`;
+    } else box.style.display = 'none';
+  }
+}
+
+function salvarProgresso(){
+  const dados = {versao:1, gerado:new Date().toISOString(), marcas:Object.keys(STATE.feito)};
+  const blob = new Blob([JSON.stringify(dados,null,1)],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='progresso_brasil360.json'; a.click();
+}
+function carregarProgresso(file){
+  const fr = new FileReader();
+  fr.onload = ()=>{
+    try{
+      const d = JSON.parse(fr.result);
+      (d.marcas||[]).forEach(k=> STATE.feito[k]=true);
+      Object.keys(STATE.datasets).forEach(c=>{ if(document.getElementById('pend-'+c)) renderPend(c); });
+      alert((d.marcas||[]).length+' marcação(ões) restaurada(s).');
+    }catch(e){ alert('Arquivo de progresso inválido.'); }
+  };
+  fr.readAsText(file);
+}
+
+function renderMicroGen(code){
+  const ds = STATE.datasets[code], map={};
+  ds.rows.forEach(r=>{ const m=(r[ds.col.micro]||'').replace(/"/g,'')||'—';
+    (map[m]=map[m]||[]).push(r._av.avaliaveis? r._av.bruto/r._av.avaliaveis*100 : 0); });
+  const arr = Object.entries(map).map(([k,v])=>({m:k,n:v.length,med:v.reduce((a,b)=>a+b,0)/v.length})).sort((a,b)=>b.med-a.med);
+  document.getElementById('micro-'+code).innerHTML = arr.map(a=>{
+    const c = a.med>75?'var(--good)':a.med>50?'var(--s1)':a.med>25?'var(--warning)':'var(--critical)';
+    return `<div class="barrow"><div class="name">Microárea ${esc(a.m)} (n=${a.n})</div>
+      <div class="track"><div class="fill" style="width:${a.med}%;background:${c}"></div></div>
+      <div class="num">${a.med.toFixed(0)}</div></div>`;
+  }).join('');
+}
+
+function renderTab(code){
+  const def = byCode(code), ds = STATE.datasets[code];
+  const f1 = document.getElementById('f1-'+code).value,
+        f2 = document.getElementById('f2-'+code).value,
+        q  = document.getElementById('f3-'+code).value.trim().toLowerCase();
+  let rows = ds.rows.filter(r=>{
+    if(f1 && (r[ds.col.micro]||'').replace(/"/g,'')!==f1) return false;
+    const pend = def.praticas.some(p=>r._av.res[p.id]===false);
+    if(f2==='pend' && !pend) return false;
+    if(f2==='ok' && pend) return false;
+    if(q){ const blob = ds.header.map(h=>r[h]).join(' ').toLowerCase(); if(!blob.includes(q)) return false; }
+    return true;
+  });
+  const ord = STATE.ordem[code] || {col:'pontos', dir:1};
+  const val = {
+    nome: r=>r[ds.col.nome]||'', micro: r=>r[ds.col.micro]||'', idade: r=>r._av.idade||0,
+    pontos: r=>r._av.avaliaveis? r._av.bruto/r._av.avaliaveis*100 : 0
+  };
+  rows.sort((a,a2)=>{ const f=val[ord.col]||val.pontos; const x=f(a),y=f(a2);
+    return (typeof x==='number'? x-y : String(x).localeCompare(String(y),'pt-BR'))*ord.dir; });
+
+  const head = `<thead><tr>
+    <th data-c="nome">Nome</th><th data-c="micro">Microárea</th><th data-c="idade">Idade</th>
+    <th>Práticas (${def.praticas.map(p=>p.id).join(' ')})</th>
+    <th data-c="pontos" class="num">Pontos</th>
+    <th>Telefone</th><th>Endereço</th></tr></thead>`;
+  const body = rows.map(r=>{
+    const pills = def.praticas.map(p=>{
+      const v = r._av.res[p.id];
+      const cls = v===true?'y': v===false?'n':'x';
+      let valor = '';
+      // Mostrar o valor numérico para práticas específicas do C2
+      if(def.code==='C2'){
+        if(p.id==='B' && ds.col.qAtend){ // Consultas até 24 meses
+          const n = num(r[ds.col.qAtend]);
+          valor = `${n}/9`;
+        }else if(p.id==='C' && ds.col.qPesoAlt){ // Registros peso/altura
+          const n = num(r[ds.col.qPesoAlt]);
+          valor = `${n}/9`;
+        }else if(p.id==='D' && ds.col.qVis){ // Visitas domiciliares
+          const n = num(r[ds.col.qVis]);
+          valor = `${n}/2`;
+        }
+      }
+      let t = v===true?'cumprida': v===false?'PENDENTE': (r._av.aplic&&r._av.aplic[p.id]===false?'fora da faixa etária':'não avaliável');
+      if(valor) t += ` (${valor})`;
+      const titul = `${p.id}: ${esc(p.curto)} — ${t}`;
+      return `<span class="pill ${cls}" title="${titul}">${p.id}${valor?`<span class="pv">${valor}</span>`:''}</span>`;
+    }).join('');
+    const pt = r._av.avaliaveis? r._av.bruto/r._av.avaliaveis*100 : null;
+    return `<tr><td>${esc(r[ds.col.nome])}</td><td>${esc((r[ds.col.micro]||'').replace(/"/g,''))}</td>
+      <td class="num">${r._av.idade===null?'—':r._av.idade}</td>
+      <td><div class="pillrow">${pills}</div></td>
+      <td class="num">${pt===null?'—':`<span class="chip ${pt>50?'ok':pt>25?'na':'no'}">${pt.toFixed(0)}</span>`}</td>
+      <td>${esc(r[ds.col.tel]||'—')}</td><td>${esc((r[ds.col.rua]||'')+', '+(r[ds.col.bairro]||''))}</td></tr>`;
+  }).join('');
+  const t = document.getElementById('tab-'+code);
+  t.innerHTML = head + `<tbody>${body}</tbody><tfoot><tr><td colspan="7" style="color:var(--muted);font-size:12px">${rows.length} de ${ds.rows.length} registro(s)</td></tr></tfoot>`;
+  t.querySelectorAll('th[data-c]').forEach(th=>th.onclick=()=>{
+    const o = STATE.ordem[code] || {col:'pontos',dir:1};
+    STATE.ordem[code] = (o.col===th.dataset.c)? {col:o.col,dir:-o.dir} : {col:th.dataset.c,dir:1};
+    renderTab(code);
+  });
+}
+
+function renderMap(code){
+  const ds = STATE.datasets[code];
+  document.getElementById('map-'+code).innerHTML = Object.keys(ds.colDef).map(k=>{
+    const cur = ds.col[k];
+    return `<div class="maprow"><div class="mk">${esc(ds.colDef[k].lab)}</div>
+      <select data-k="${k}"><option value="">(não usar)</option>${ds.header.map(h=>
+        `<option ${h===cur?'selected':''}>${esc(h)}</option>`).join('')}</select>
+      <div>${cur?'<span class="chip ok">detectada</span>':'<span class="chip no">ausente</span>'}</div></div>`;
+  }).join('');
+  document.querySelectorAll(`#map-${code} select`).forEach(s=>s.onchange=()=>{
+    ds.colManual = ds.colManual||{};
+    ds.colManual[s.dataset.k] = s.value || null;
+    computar(ds); renderIndicador(code); renderOverview();
+  });
+}
+
+/* ============================================================
+   10b. SITUAÇÃO VACINAL (relatório de busca ativa de vacinação)
+   ============================================================ */
+function renderVacina(){
+  const box = document.getElementById('vacbox');
+  if(!box) return;
+  const V = STATE.vacina;
+  if(!V){
+    box.innerHTML = `<div class="card"><h2>Situação vacinal</h2>
+      <p class="desc">A boa prática E do C2 exige pentavalente com 3 doses, poliomielite inativada com 3 doses,
+      tríplice viral com 2 doses e pneumocócica com 2 doses até os dois anos de vida. O relatório de acompanhamento
+      não traz essa informação.</p>
+      <div class="empty">Carregue o <span class="k">Relatório de Busca Ativa de Vacinação</span> do e-SUS APS
+      (Relatórios → Busca ativa de vacinação → grupo-alvo Crianças → status Atrasada) e o painel passa a calcular a
+      prática E a partir dele.</div></div>`;
+    return;
+  }
+  const pes = [...V.pessoas.values()];
+  const comC2 = pes.filter(p=>dosesC2(p).length>0);
+  const ate2 = pes.filter(p=> p.meses!==null && p.meses < 24);
+  const ate2C2 = ate2.filter(p=>dosesC2(p).length>0);
+  const dosesTot = pes.reduce((a,p)=>a+p.doses.length,0);
+  const dosesRel = pes.reduce((a,p)=>a+dosesC2(p).length,0);
+
+  /* doses atrasadas por imunobiológico, a partir do conjunto já combinado e sem duplicidade */
+  const porImuno = {};
+  pes.forEach(p=>p.doses.forEach(d=>{ const i=d.imuno||'—'; porImuno[i]=(porImuno[i]||0)+1; }));
+  const maxI = Math.max(...Object.values(porImuno),1);
+  const porMicro = {};
+  pes.forEach(p=>{ porMicro[p.micro||'—'] = (porMicro[p.micro||'—']||0)+1; });
+  const maxM = Math.max(...Object.values(porMicro),1);
+
+  const dsC2 = STATE.datasets['C2'];
+  let cruz = '';
+  if(dsC2){
+    const semAtraso = dsC2.rows.filter(r=>r._vacDoses && r._vacDoses.length===0).length;
+    const comAtraso = dsC2.rows.length - semAtraso;
+    const naoAchados = dsC2.rows.filter(r=>!r._vac).length;
+    cruz = `<div class="note"><span class="k">Cruzamento com o relatório de puericultura:</span>
+      ${dsC2.rows.length} crianças no denominador do C2, ${comAtraso} com vacina atrasada que impacta a prática E e
+      ${semAtraso} em dia. ${naoAchados} criança(s) do C2 não aparecem na busca ativa de vacinação, o que o painel
+      interpreta como situação vacinal em dia. Vale conferir se o relatório de vacinação foi exportado para a mesma
+      equipe e com o status “Atrasada”.</div>`;
+  }else{
+    cruz = `<div class="note warn">Carregue também o relatório de acompanhamento com a lista temática de puericultura
+      para que a situação vacinal seja aplicada ao cálculo da prática E e ao denominador correto do C2.</div>`;
+  }
+
+  box.innerHTML = `
+  <div class="card">
+    <h2>Situação vacinal</h2>
+    <p class="desc">${esc(V.meta.unidade)} · Equipe ${esc(V.meta.equipe)} · Grupo-alvo ${esc(V.meta.grupo||'—')} ·
+    Status ${esc(V.meta.statusFiltro||'—')} · Gerado em ${esc(V.meta.gerado)}</p>
+    <div class="grid g4">
+      <div class="tile"><span class="lab">Crianças com vacina atrasada</span><div class="val" style="color:var(--critical)">${pes.length}</div>
+        <div class="foot">no grupo-alvo do relatório</div></div>
+      <div class="tile"><span class="lab">Doses atrasadas</span><div class="val">${dosesTot}</div>
+        <div class="foot">média de ${(dosesTot/Math.max(pes.length,1)).toFixed(1)} por criança</div></div>
+      <div class="tile"><span class="lab">Menores de 2 anos com atraso</span><div class="val" style="color:var(--serious)">${ate2C2.length}</div>
+        <div class="foot">de ${ate2.length} menores de 2 anos na lista · faixa do C2</div></div>
+      <div class="tile"><span class="lab">Doses do escopo do C2 em atraso</span><div class="val" style="color:var(--s1)">${dosesRel}</div>
+        <div class="foot">em ${comC2.length} crianças de todo o grupo-alvo, conforme a seleção abaixo</div></div>
+    </div>
+    ${cruz}
+  </div>
+
+  <div class="card">
+    <h2>Doses atrasadas por imunobiológico</h2>
+    <p class="desc">Marque quais entram na boa prática E do C2. A seleção inicial segue a nota metodológica do indicador,
+    que exige pentavalente, poliomielite inativada, tríplice viral e pneumocócica.</p>
+    <label style="display:inline-flex;gap:8px;align-items:center;font-size:13px;margin-bottom:12px;cursor:pointer">
+      <input type="checkbox" id="vacPrim" ${STATE.vacSoPrimaria?'checked':''} style="width:16px;height:16px;accent-color:var(--s1)">
+      Considerar apenas as doses do esquema primário (D, D1, D2, D3 e DU), ignorando reforços</label>
+    <div class="bars">${Object.entries(porImuno).sort((a,b)=>b[1]-a[1]).map(([im,q])=>{
+      const on = !!STATE.vacSel[im];
+      return `<div class="barrow" style="grid-template-columns:26px 250px 1fr 62px">
+        <input type="checkbox" class="vacsel" data-im="${esc(im)}" ${on?'checked':''} style="width:16px;height:16px;accent-color:var(--s1);cursor:pointer">
+        <div class="name" title="${esc(im)}">${esc(im)}</div>
+        <div class="track"><div class="fill" style="width:${q/maxI*100}%;background:${on?'var(--s1)':'var(--axis)'}"></div></div>
+        <div class="num">${q}</div></div>`;
+    }).join('')}</div>
+    <div class="legend"><span><i class="sw" style="background:var(--s1)"></i>Conta para a prática E do C2</span>
+      <span><i class="sw" style="background:var(--axis)"></i>Fora do escopo do indicador, mas relevante para a campanha</span></div>
+  </div>
+
+  <div class="card">
+    <h2>Crianças com atraso por microárea</h2>
+    <div class="bars">${Object.entries(porMicro).sort((a,b)=>b[1]-a[1]).map(([m,q])=>
+      `<div class="barrow"><div class="name">Microárea ${esc(m)}</div>
+       <div class="track"><div class="fill" style="width:${q/maxM*100}%;background:var(--critical)"></div></div>
+       <div class="num">${q}</div></div>`).join('')}</div>
+  </div>
+
+  <div class="card">
+    <h2>Lista nominal para busca ativa de vacinação</h2>
+    <div class="filters">
+      <div class="fgroup"><label>Microárea</label><select id="vacMicro"><option value="">Todas</option>${
+        [...new Set(pes.map(p=>p.micro))].sort().map(m=>`<option>${esc(m)}</option>`).join('')}</select></div>
+      <div class="fgroup"><label>Faixa etária</label><select id="vacFaixa">
+        <option value="">Todas</option><option value="24">Menores de 2 anos (faixa do C2)</option>
+        <option value="60">Menores de 5 anos</option></select></div>
+      <div class="fgroup"><label>Escopo</label><select id="vacEsc">
+        <option value="">Todas as vacinas atrasadas</option><option value="c2">Somente as que impactam o C2</option></select></div>
+      <div class="fgroup" style="flex:1;min-width:200px"><label>Buscar</label><input type="search" id="vacBusca" placeholder="nome, rua, telefone..."></div>
+      <button class="btn" id="vacExp">Exportar lista</button>
+    </div>
+    <div class="tablewrap"><table id="vacTab"></table></div>
+  </div>`;
+
+  document.getElementById('vacPrim').onchange = e=>{ STATE.vacSoPrimaria = e.target.checked; recalcVac(); };
+  box.querySelectorAll('.vacsel').forEach(cb=>cb.onchange=()=>{ STATE.vacSel[cb.dataset.im]=cb.checked; recalcVac(); });
+  ['vacMicro','vacFaixa','vacEsc'].forEach(id=>document.getElementById(id).onchange=renderVacTab);
+  document.getElementById('vacBusca').oninput = renderVacTab;
+  document.getElementById('vacExp').onclick = exportVac;
+  renderVacTab();
+}
+function recalcVac(){
+  if(STATE.datasets['C2']) computar(STATE.datasets['C2']);
+  renderIndicador('C2'); renderOverview();
+}
+function filtroVac(){
+  const V = STATE.vacina;
+  const m = document.getElementById('vacMicro').value,
+        f = document.getElementById('vacFaixa').value,
+        e = document.getElementById('vacEsc').value,
+        q = document.getElementById('vacBusca').value.trim().toLowerCase();
+  return [...V.pessoas.values()].filter(p=>{
+    if(m && p.micro!==m) return false;
+    if(f && !(p.meses!==null && p.meses < +f)) return false;
+    if(e==='c2' && dosesC2(p).length===0) return false;
+    if(q && !((p.nome+' '+p.end+' '+p.tel).toLowerCase().includes(q))) return false;
+    return true;
+  }).sort((a,b)=> dosesC2(b).length-dosesC2(a).length || b.doses.length-a.doses.length);
+}
+function renderVacTab(){
+  const lista = filtroVac();
+  document.getElementById('vacTab').innerHTML =
+    `<thead><tr><th>Criança</th><th>Idade</th><th>Microárea</th><th class="num">Doses atrasadas</th>
+      <th class="num">Impactam o C2</th><th>Vacinas em atraso</th><th>Telefone</th><th>Endereço</th></tr></thead>
+    <tbody>${lista.map(p=>{
+      const c2 = dosesC2(p);
+      const relev = d => STATE.vacSel[d.imuno] && (!STATE.vacSoPrimaria || DOSE_PRIMARIA.test(d.dose||''));
+      const grupos = {};
+      p.doses.forEach(d=>{ const k = d.imuno+'|'+(relev(d)?'1':'0');
+        (grupos[k] = grupos[k] || {im:d.imuno, rel:relev(d), doses:[]}).doses.push(d.dose); });
+      const chips = Object.values(grupos)
+        .sort((a,b)=> (b.rel?1:0)-(a.rel?1:0) || b.doses.length-a.doses.length)
+        .map(g=>`<span class="chip ${g.rel?'no':'na'}" title="${esc(g.im)}: ${esc(g.doses.join(', '))}${g.rel?' — conta para a prática E do C2':' — fora do escopo do indicador'}">${esc(g.im.replace(/^Vacina\s*/i,''))} · ${esc(g.doses.join('/'))}</span>`)
+        .join(' ');
+      return `<tr><td>${esc(p.nome)}</td><td>${esc(p.idade)}</td><td>${esc(p.micro)}</td>
+        <td class="num">${p.doses.length}</td>
+        <td class="num">${c2.length?`<span class="chip no">${c2.length}</span>`:'<span class="chip ok">0</span>'}</td>
+        <td style="white-space:normal;min-width:340px;max-width:520px;line-height:2">${chips}</td>
+        <td>${esc(p.tel||'—')}</td><td>${esc(p.end)}</td></tr>`;
+    }).join('')}</tbody>
+    <tfoot><tr><td colspan="8" style="color:var(--muted);font-size:12px">${lista.length} de ${STATE.vacina.pessoas.size} criança(s)</td></tr></tfoot>`;
+}
+function exportVac(){
+  const lista = filtroVac();
+  const l = [['Criança','Idade','Microárea','Telefone','Endereço','Imunobiológico','Dose','Impacta o C2'].join(';')];
+  lista.forEach(p=>p.doses.forEach(d=>{
+    const rel = STATE.vacSel[d.imuno] && (!STATE.vacSoPrimaria || DOSE_PRIMARIA.test(d.dose||''));
+    l.push([p.nome,p.idade,p.micro,p.tel,p.end,d.imuno,d.dose,rel?'SIM':'NAO']
+      .map(x=>String(x==null?'':x).replace(/;/g,',')).join(';'));
+  }));
+  const blob=new Blob(['﻿'+l.join('\n')],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='busca_ativa_vacinacao.csv'; a.click();
+}
+
+/* ============================================================
+   11. PAINEL C3 (mantido, com as 11 boas práticas)
+   ============================================================ */
+function renderC3(){
+  const p = document.getElementById('p-C3'), ds = STATE.datasets['C3'];
+  if(!ds){
+    p.innerHTML = `<div class="card"><h2>C3 · Cuidado da Gestante e da Puérpera</h2>
+      <p class="desc">População avaliada: gestantes e puérperas vinculadas à equipe</p>
+      <div class="empty">Carregue o relatório de Acompanhamento de Condições de Saúde com a lista temática
+      <span class="k">Gestação e puerpério</span>.</div>
+      <div class="note">No e-SUS APS: <span class="k">Relatórios → Acompanhamento de condições de saúde</span>,
+      selecione a equipe e a lista temática <span class="k">Gestação e puerpério</span>, faixa etária Todas,
+      depois <span class="k">Exportar CSV</span>.</div>
+      <h3>Boas práticas que serão calculadas</h3>
+      <div class="tablewrap" style="max-height:none"><table><thead><tr><th>Prática</th><th>Descrição</th><th class="num">Pontos</th></tr></thead>
+      <tbody>${PRAT3.map(x=>`<tr><td class="k">${x.id}</td><td style="white-space:normal">${esc(x.desc)}</td><td class="num">${x.pts}</td></tr>`).join('')}
+      <tr><td colspan="2" class="k">Total</td><td class="num k">100</td></tr></tbody></table></div></div>`;
+    return;
+  }
+  const C=C3COL, R=ds.resumo, all=ds.rows, cB=classificar(R.bruto), cA=classificar(R.ajust);
+  const micros=[...new Set(all.map(r=>(r[C.micro]||'').replace(/"/g,'')))].sort();
+  const riscos=[...new Set(all.map(r=>r[C.risco]).filter(v=>!vazio(v)))].sort();
+
+  p.innerHTML = `
+  <div class="card">
+    <h2>C3 · Cuidado da Gestante e da Puérpera</h2>
+    <p class="desc">${esc(ds.meta.unidade)} · Equipe ${esc(ds.meta.equipe)} · Período ${esc(ds.meta.periodo)}</p>
+    <div class="hero">
+      <div><span class="lab" style="font-size:12px;color:var(--text-secondary)">Pontuação bruta (regra oficial)</span>
+        <div class="heronum" style="color:${cB.color}">${R.bruto.toFixed(1)}<small> /100</small></div>
+        <span class="badge ${cB.cls}">${cB.ic} ${cB.label}</span></div>
+      <div style="border-left:1px solid var(--border);padding-left:24px">
+        <span class="lab" style="font-size:12px;color:var(--text-secondary)">Pontuação ajustada pela idade gestacional</span>
+        <div class="heronum" style="color:${cA.color};font-size:44px">${R.ajust.toFixed(1)}<small> /100</small></div>
+        <span class="badge ${cA.cls}">${cA.ic} ${cA.label}</span></div>
+      <div style="border-left:1px solid var(--border);padding-left:24px;font-size:13px;color:var(--text-secondary);max-width:330px">
+        A nota bruta considera as 11 boas práticas como se a gestação já tivesse terminado. A ajustada avalia apenas o que
+        já é exigível pela idade gestacional de cada gestante.</div>
+    </div>
+  </div>
+  <div class="grid g4" style="margin-bottom:16px">
+    <div class="tile"><span class="lab">Gestantes e puérperas vinculadas</span><div class="val">${all.length}</div><div class="foot">denominador do indicador</div></div>
+    <div class="tile"><span class="lab">Captação até 12 semanas</span><div class="val">${R.pct.A.toFixed(0)}<small>%</small></div><div class="foot">${R.cnt.A} de ${all.length} · prática A (10 pontos)</div></div>
+    <div class="tile"><span class="lab">Pendências exigíveis hoje</span><div class="val" style="color:var(--critical)">${R.pendTotal}</div><div class="foot">em ${R.pendPessoas} gestantes</div></div>
+    <div class="tile"><span class="lab">Pontos recuperáveis</span><div class="val" style="color:var(--s1)">+${R.recuperavel.toFixed(1)}</div><div class="foot">ganho na nota bruta</div></div>
+    <div class="tile" id="proj-C3" style="display:none"></div>
+  </div>
+  <div class="card"><h2>Cumprimento das 11 boas práticas</h2>
+    <p class="desc">Percentual de gestantes que já cumpriram cada prática.</p>
+    <div class="bars" id="bars-C3"></div></div>
+  <div class="card"><h2>Pendências nominais</h2>
+    <p class="desc">Clique em uma prática para abrir a lista e marque cada gestante conforme a ação for realizada.
+    <span class="k">Vencida</span> = já exigível pela idade gestacional e sem registro. <span class="k">A vencer</span> = ainda dentro do prazo.
+    A marcação organiza o trabalho da equipe e projeta o efeito na nota, mas não substitui o registro no PEC.</p>
+    <div id="pend-C3"></div></div>
+  <div class="grid g2">
+    <div class="card"><h2>Distribuição por idade gestacional</h2><div class="bars" id="ig-C3"></div></div>
+    <div class="card"><h2>Desempenho por microárea</h2><div class="bars" id="micro-C3"></div></div>
+  </div>
+  <div class="card"><h2>Lista nominal e pontuação individual</h2>
+    <div class="filters">
+      <div class="fgroup"><label>Microárea</label><select id="c3Micro"><option value="">Todas</option>${micros.map(m=>`<option>${esc(m)}</option>`).join('')}</select></div>
+      <div class="fgroup"><label>Risco gestacional</label><select id="c3Risco"><option value="">Todos</option>${riscos.map(m=>`<option>${esc(m)}</option>`).join('')}</select></div>
+      <div class="fgroup"><label>Idade gestacional</label><select id="c3Faixa"><option value="">Todas</option>
+        <option value="1">1º trimestre</option><option value="2">2º trimestre</option><option value="3">3º trimestre</option><option value="p">Puérperas</option></select></div>
+      <div class="fgroup"><label>Situação</label><select id="c3Sit"><option value="">Todas</option>
+        <option value="pend">Com pendência vencida</option><option value="ok">Sem pendência vencida</option></select></div>
+      <div class="fgroup" style="flex:1;min-width:200px"><label>Buscar</label><input type="search" id="c3Busca" placeholder="nome, rua, CPF, CNS..."></div>
+    </div>
+    <div class="tablewrap"><table id="c3Tab"></table></div>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--good)"></i>Cumprido</span>
+      <span><i class="sw" style="background:color-mix(in srgb,var(--critical) 22%,transparent)"></i>Pendente e já exigível</span>
+      <span><i class="sw" style="background:var(--grid)"></i>Ainda não exigível</span></div></div>
+  <div class="card"><h2>Alertas clínicos</h2>
+    <p class="desc">Sinalizações extraídas do relatório, fora do escopo do indicador.</p>
+    <div class="grid g3" id="c3Alertas"></div>
+    <div class="note">O IMC usa a última medição feita durante a gestação, portanto superestima o estado nutricional
+    pré-gestacional. Use como sinalizador de acompanhamento e de conferência do registro de altura.</div></div>`;
+
+  const c=C;
+  document.getElementById('bars-C3').innerHTML = PRAT3.map(pr=>{
+    const pct=R.pct[pr.id], col=pct>75?'var(--good)':pct>50?'var(--s1)':pct>25?'var(--warning)':'var(--critical)';
+    return `<div class="barrow clickable" data-p="${pr.id}" title="${esc(pr.desc)} — ${pr.pts} pontos">
+      <div class="name">${pr.id} · ${esc(pr.curto)}</div>
+      <div class="track"><div class="fill" style="width:${pct}%;background:${col}"></div></div>
+      <div class="num">${pct.toFixed(0)}%</div></div>`;
+  }).join('');
+  document.querySelectorAll('#bars-C3 .barrow').forEach(el=>el.onclick=()=>{
+    const d=document.querySelector(`#pend-C3 details[data-p="${el.dataset.p}"]`);
+    if(d){d.open=true;d.scrollIntoView({behavior:'smooth',block:'center'});}
+  });
+  renderPend('C3');
+  const faixas=[['Até 13 sem (1º tri)',r=>r._av.ig<=13],['14 a 27 sem (2º tri)',r=>r._av.ig>=14&&r._av.ig<=27],
+                ['28 a 36 sem (3º tri)',r=>r._av.ig>=28&&r._av.ig<=36],['37 sem ou mais',r=>r._av.ig>=37]];
+  const maxF=Math.max(...faixas.map(f=>all.filter(f[1]).length),1);
+  document.getElementById('ig-C3').innerHTML = faixas.map(f=>{const q=all.filter(f[1]).length;
+    return `<div class="barrow"><div class="name">${f[0]}</div><div class="track"><div class="fill" style="width:${q/maxF*100}%"></div></div><div class="num">${q}</div></div>`;}).join('');
+  const mm={}; all.forEach(r=>{const m=(r[c.micro]||'').replace(/"/g,'')||'—';(mm[m]=mm[m]||[]).push(r._av.bruto);});
+  document.getElementById('micro-C3').innerHTML = Object.entries(mm).map(([k,v])=>({m:k,n:v.length,med:v.reduce((a,b)=>a+b,0)/v.length}))
+    .sort((a,b)=>b.med-a.med).map(a=>{const col=a.med>75?'var(--good)':a.med>50?'var(--s1)':a.med>25?'var(--warning)':'var(--critical)';
+    return `<div class="barrow"><div class="name">Microárea ${esc(a.m)} (n=${a.n})</div>
+      <div class="track"><div class="fill" style="width:${a.med}%;background:${col}"></div></div><div class="num">${a.med.toFixed(0)}</div></div>`;}).join('');
+
+  const paAlt=all.filter(r=>{const m=String(r[c.paUlt]||'').match(/(\d+)\s*\/\s*(\d+)/);return m&&(+m[1]>=140||+m[2]>=90);});
+  const imc=all.map(r=>{const pp=flt(r[c.peso]),aa=flt(r[c.altura]);return (pp&&aa)?{r,v:pp/Math.pow(aa/100,2)}:null;}).filter(Boolean);
+  const cards=[['Pressão arterial alterada (≥140/90)',paAlt,'critical'],
+    ['Gestação na adolescência',all.filter(r=>/^1[0-9] anos/.test(r[c.idade]||'')),'serious'],
+    ['Risco gestacional não habitual',all.filter(r=>!vazio(r[c.risco])&&!/habitual/i.test(r[c.risco])),'warning'],
+    ['IMC atual ≥ 30',imc.filter(x=>x.v>=30),'warning',x=>x.r],
+    ['IMC atual < 18,5',imc.filter(x=>x.v<18.5),'warning',x=>x.r],
+    ['Sem atendimento médico há mais de 30 dias',all.filter(r=>diasDesdeCol(r,c.dMed)>30),'serious'],
+    ['Sem visita domiciliar há mais de 30 dias',all.filter(r=>diasDesdeCol(r,c.dVis)>30),'serious'],
+    ['37 semanas ou mais (parto iminente)',all.filter(r=>r._av.ig>=37),'critical']];
+  document.getElementById('c3Alertas').innerHTML = cards.map(([lab,list,st,pick])=>{
+    const nomes=list.slice(0,8).map(x=>esc((pick?pick(x):x).Nome)).join(' · ');
+    return `<div class="tile"><span class="lab">${lab}</span>
+      <div class="val" style="color:var(--${list.length?st:'muted'})">${list.length}</div>
+      <div class="foot">${nomes||'nenhuma'}${list.length>8?' e mais '+(list.length-8):''}</div></div>`;}).join('');
+
+  ['c3Micro','c3Risco','c3Faixa','c3Sit'].forEach(id=>document.getElementById(id).onchange=renderC3Tab);
+  document.getElementById('c3Busca').oninput = renderC3Tab;
+  renderC3Tab();
+}
+
+function renderC3Tab(){
+  const ds=STATE.datasets['C3'], C=C3COL;
+  const f={micro:v('c3Micro'),risco:v('c3Risco'),faixa:v('c3Faixa'),sit:v('c3Sit'),q:v('c3Busca').trim().toLowerCase()};
+  function v(id){const e=document.getElementById(id);return e?e.value:'';}
+  let rows=ds.rows.filter(r=>{
+    if(f.micro && (r[C.micro]||'').replace(/"/g,'')!==f.micro) return false;
+    if(f.risco && r[C.risco]!==f.risco) return false;
+    if(f.faixa==='1'&&!(r._av.ig<=13))return false;
+    if(f.faixa==='2'&&!(r._av.ig>=14&&r._av.ig<=27))return false;
+    if(f.faixa==='3'&&!(r._av.ig>=28))return false;
+    if(f.faixa==='p'&&!r._av.puerpera)return false;
+    const pend=PRAT3.some(p=>!r._av.res[p.id]&&r._av.devido[p.id]);
+    if(f.sit==='pend'&&!pend)return false;
+    if(f.sit==='ok'&&pend)return false;
+    if(f.q){const blob=[r.Nome,r[C.cpf],r[C.cns],r[C.rua],r[C.bairro],r[C.cel],r[C.contato]].join(' ').toLowerCase();if(!blob.includes(f.q))return false;}
+    return true;
+  });
+  const ord=STATE.ordem['C3']||{col:'bruto',dir:1};
+  const getters={nome:r=>r.Nome,micro:r=>r[C.micro],ig:r=>r._av.ig,bruto:r=>r._av.bruto,ajust:r=>r._av.ajust,cons:r=>num(r[C.atendPN])};
+  rows.sort((a,b)=>{const g=getters[ord.col]||getters.bruto;const x=g(a),y=g(b);
+    return (typeof x==='number'?x-y:String(x).localeCompare(String(y),'pt-BR'))*ord.dir;});
+  const t=document.getElementById('c3Tab');
+  t.innerHTML=`<thead><tr><th data-c="nome">Nome</th><th data-c="micro">Microárea</th><th data-c="ig">IG</th><th>DPP</th><th>Risco</th>
+    <th>${PRAT3.map(p=>p.id).join(' ')}</th><th data-c="bruto" class="num">Bruta</th><th data-c="ajust" class="num">Ajustada</th>
+    <th data-c="cons" class="num">Consultas</th><th>Telefone</th><th>Endereço</th><th>CPF</th><th>CNS</th></tr></thead>
+    <tbody>${rows.map(r=>`<tr><td>${esc(r.Nome)}</td><td>${esc((r[C.micro]||'').replace(/"/g,''))}</td>
+      <td class="num">${r._av.ig} sem</td><td>${fmtDate(r[C.dpp]||r[C.dppE])}</td><td>${esc(r[C.risco])}</td>
+      <td><div class="pillrow">${PRAT3.map(p=>{const cls=r._av.res[p.id]?'y':(r._av.devido[p.id]?'n':'p');
+        const tt=r._av.res[p.id]?'cumprida':(r._av.devido[p.id]?'PENDENTE — já exigível':'ainda não exigível');
+        return `<span class="pill ${cls}" title="${p.id}: ${esc(p.curto)} — ${tt}">${p.id}</span>`;}).join('')}</div></td>
+      <td class="num"><span class="chip ${r._av.bruto>50?'ok':r._av.bruto>25?'na':'no'}">${r._av.bruto}</span></td>
+      <td class="num"><span class="chip ${r._av.ajust>50?'ok':r._av.ajust>25?'na':'no'}">${r._av.ajust.toFixed(0)}</span></td>
+      <td class="num">${num(r[C.atendPN])}</td><td>${esc(r[C.cel]||r[C.contato]||'—')}</td>
+      <td>${esc((r[C.rua]||'')+', '+(r[C.bairro]||''))}</td><td>${esc(r[C.cpf])}</td><td>${esc(r[C.cns])}</td></tr>`).join('')}</tbody>
+    <tfoot><tr><td colspan="13" style="color:var(--muted);font-size:12px">${rows.length} de ${ds.rows.length} registro(s)</td></tr></tfoot>`;
+  t.querySelectorAll('th[data-c]').forEach(th=>th.onclick=()=>{
+    const o=STATE.ordem['C3']||{col:'bruto',dir:1};
+    STATE.ordem['C3']=(o.col===th.dataset.c)?{col:o.col,dir:-o.dir}:{col:th.dataset.c,dir:1};
+    renderC3Tab();
+  });
+}
+
+/* ============================================================
+   12. METODOLOGIA
+   ============================================================ */
+function renderMetodo(){
+  const tab = (def) => `<div class="tablewrap" style="max-height:none;margin-bottom:8px"><table>
+    <thead><tr><th>Prática</th><th>Descrição</th><th class="num">Pontos</th>${def.tipo==='faixas'?'<th>Faixa etária</th>':''}</tr></thead>
+    <tbody>${def.praticas.map(p=>`<tr><td class="k">${p.id}</td><td style="white-space:normal">${esc(p.desc)}</td>
+      <td class="num">${p.pts}</td>${def.tipo==='faixas'?`<td>${p.faixa[0]} a ${p.faixa[1]} anos</td>`:''}</tr>`).join('')}
+      <tr><td colspan="2" class="k">Total</td><td class="num k">100</td>${def.tipo==='faixas'?'<td></td>':''}</tr></tbody></table></div>`;
+
+  document.getElementById('p-metodo').innerHTML = `
+  <div class="card">
+    <h2>Como o painel calcula</h2>
+    <p class="desc">Regras conforme as notas metodológicas do Componente Qualidade da APS (Portaria GM/MS nº 3.493/2024 e
+    Nota Técnica nº 3/2025-CGESCO/DESCO/SAPS/MS). Para todos os indicadores de boas práticas, a fórmula é
+    numerador dividido por denominador, resultando de 0 a 100 pontos.</p>
+    <div class="note"><span class="k">Classificação (C2 a C7):</span> Ótimo &gt;75 e ≤100 · Bom &gt;50 e ≤75 ·
+    Suficiente &gt;25 e ≤50 · Regular ≤25.<br>
+    <span class="k">Classificação do C1:</span> Ótimo &gt;50 e ≤70% · Bom &gt;30 e ≤50% · Suficiente &gt;10 e ≤30% ·
+    Regular ≤10% ou acima de 70%.</div>
+    <div class="note"><span class="k">Prática E do C2, situação vacinal:</span> o relatório de acompanhamento não informa
+    o esquema vacinal. O painel calcula essa prática a partir do <span class="k">Relatório de Busca Ativa de Vacinação</span>
+    do e-SUS, com grupo-alvo Crianças e status Atrasada. A criança é considerada em dia quando não possui, naquele relatório,
+    nenhuma dose atrasada entre os imunobiológicos exigidos pelo indicador. Crianças do denominador do C2 que não aparecem na
+    busca ativa são tratadas como em dia, premissa válida desde que os dois relatórios sejam da mesma equipe e do mesmo momento.
+    A seleção de quais imunobiológicos contam é editável na aba C2.</div>
+    <div class="note"><span class="k">Filtro de exportação do C7:</span> o relatório de Saúde da Mulher precisa ser
+    exportado com faixa etária de <span class="k">9 até 69 anos</span>. As práticas A, C e D pedem de 14 a 69 anos, mas a
+    prática B avalia a vacina HPV em meninas de 9 a 14 anos. Uma exportação iniciada aos 14 anos deixa de fora quase toda
+    a população dessa prática e produz um denominador truncado, situação que o painel detecta e sinaliza na aba do
+    indicador.</div>
+    <div class="note warn"><span class="k">Limite conhecido do relatório de acompanhamento:</span> o e-SUS informa apenas a
+    data da última visita domiciliar, não o histórico completo. As práticas que exigem duas visitas com intervalo mínimo de
+    30 dias (C2 D, C4 D, C5 D e C6 C) são verificadas de forma aproximada, checando se houve visita dentro do período. O
+    número real pode ser menor que o exibido. Para conferência exata, use o relatório de visitas domiciliares do e-SUS.</div>
+    ${INDIC.filter(i=>i.tipo!=='razao').map(i=>`
+      <h3>${i.code} · ${esc(i.nome)}</h3>
+      <p class="desc">Denominador: ${esc(i.pop||'')}</p>
+      ${i.code==='C3'? `<div class="tablewrap" style="max-height:none;margin-bottom:8px"><table>
+        <thead><tr><th>Prática</th><th>Descrição</th><th class="num">Pontos</th></tr></thead>
+        <tbody>${PRAT3.map(p=>`<tr><td class="k">${p.id}</td><td style="white-space:normal">${esc(p.desc)}</td><td class="num">${p.pts}</td></tr>`).join('')}
+        <tr><td colspan="2" class="k">Total</td><td class="num k">100</td></tr></tbody></table></div>` : tab(i)}
+      ${i.code==='C7'? `<p class="desc">No C7 cada boa prática tem seu próprio denominador, definido pela faixa etária.
+        A nota da equipe é a soma ponderada: 20 × (cumpridas de A ÷ pessoas de 25 a 64 anos) + 30 × (B ÷ 9 a 14 anos) +
+        30 × (C ÷ 14 a 69 anos) + 20 × (D ÷ 50 a 69 anos). O máximo continua sendo 100 pontos.</p>`:''}
+      ${i.code==='C3'? `<p class="desc">Além da nota bruta, o painel calcula a <span class="k">nota ajustada pela idade
+        gestacional</span>, que retira do denominador as práticas ainda não exigíveis. Janelas adotadas: 1ª consulta desde
+        o início; sorologias do 1º trimestre a partir de 14 semanas; saúde bucal a partir de 14 semanas; dTpa a partir de
+        20 semanas; sorologias do 3º trimestre a partir de 28 semanas; consultas, aferições, peso e altura e visitas a
+        partir de 36 semanas; consulta e visita de puerpério apenas para puérperas.</p>`:''}
+    `).join('')}
+    <h3>C1 · Mais Acesso à Atenção Primária</h3>
+    <p class="desc">Numerador: número de atendimentos por demanda programada. Denominador: número total de atendimentos de
+    todos os tipos de demanda. Não é obtido pelo relatório de acompanhamento de condições de saúde, por isso a aba C1 usa
+    entrada manual a partir do relatório de produção.</p>
+    <h3>Origem dos dados</h3>
+    <p class="desc">Relatório de Acompanhamento de Condições de Saúde do e-SUS APS (PEC), exportado em CSV, uma lista
+    temática por indicador. O painel trata automaticamente a codificação Latin-1 usada pelo e-SUS e usa a data de geração
+    do relatório como referência para todos os cálculos de prazo.</p>
+  </div>`;
+}
+
+/* ============================================================
+   13. EXPORTAÇÃO
+   ============================================================ */
+function exportPend(){
+  const linhas = [['Indicador','Nome','Microárea','Idade/IG','Telefone','Endereço','Prática','Descrição','Situação','Pontos','Concluído na equipe'].join(';')];
+  let algo = false;
+  Object.keys(STATE.datasets).forEach(code=>{
+    const ds = STATE.datasets[code], def = byCode(code);
+    if(code==='C3'){
+      ds.rows.forEach(r=>PRAT3.forEach(p=>{
+        if(r._av.res[p.id]) return; algo=true;
+        linhas.push([code,r.Nome,(r[C3COL.micro]||'').replace(/"/g,''),r._av.ig+' sem',
+          r[C3COL.cel]||r[C3COL.contato]||'',(r[C3COL.rua]||'')+' '+(r[C3COL.bairro]||''),
+          p.id+' - '+p.curto,p.desc,r._av.devido[p.id]?'VENCIDA':'A vencer',p.pts,
+          marcado('C3',r,p.id)?'SIM':'NAO']
+          .map(x=>String(x==null?'':x).replace(/;/g,',')).join(';'));
+      }));
+    }else{
+      ds.rows.forEach(r=>def.praticas.forEach(p=>{
+        if(r._av.res[p.id]!==false) return; algo=true;
+        linhas.push([code,r[ds.col.nome],(r[ds.col.micro]||'').replace(/"/g,''),r._av.idade==null?'':r._av.idade+' anos',
+          r[ds.col.tel]||'',(r[ds.col.rua]||'')+' '+(r[ds.col.bairro]||''),
+          p.id+' - '+p.curto,p.desc,'PENDENTE',p.pts, marcado(code,r,p.id)?'SIM':'NAO']
+          .map(x=>String(x==null?'':x).replace(/;/g,',')).join(';'));
+      }));
+    }
+  });
+  if(!algo){ alert('Carregue ao menos um relatório para exportar as pendências.'); return; }
+  const blob = new Blob(['﻿'+linhas.join('\n')],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='pendencias_brasil360.csv'; a.click();
+}
+
+/* ============================================================
+   14. CARGA E ATUALIZAÇÃO
+   ============================================================ */
+function ingest(text, filename){
+  const d = parseEsus(text, filename);
+  if(d.meta.code === 'VAC'){
+    /* nova exportação da mesma equipe e do mesmo grupo-alvo substitui a anterior */
+    const ix = STATE.vacinas.findIndex(v=> v.meta.arquivo===d.meta.arquivo ||
+      (v.meta.equipe===d.meta.equipe && (v.meta.grupo||'')===(d.meta.grupo||'')));
+    if(ix>=0) STATE.vacinas[ix] = d; else STATE.vacinas.push(d);
+    mergeVacinas();
+    ['C2','C7'].forEach(c=>{ if(STATE.datasets[c]) computar(STATE.datasets[c]); });
+    refresh();
+    return;
+  }
+  if(!d.meta.code) throw new Error(`Lista temática "${d.meta.tema}" não reconhecida. O painel cobre gestação e puerpério, criança, diabetes, hipertensão, pessoa idosa e rastreamento de câncer.`);
+  STATE.datasets[d.meta.code] = d;
+  computar(d);
+  refresh();
+}
+function refresh(){
+  buildTabs(); renderOverview(); renderC1(); renderC3();
+  ['C2','C4','C5','C6','C7'].forEach(renderIndicador);
+  renderMetodo();
+  const ds = Object.values(STATE.datasets)[0];
+  document.getElementById('ctx').textContent = ds
+    ? `${ds.meta.municipio||'—'} · ${ds.meta.unidade||'—'} · Equipe ${ds.meta.equipe||'—'} · ${Object.keys(STATE.datasets).length} relatório(s)`
+    : 'Nenhum relatório carregado';
+}
+function lerArquivos(files){
+  [...files].forEach(f=>{
+    const fr = new FileReader();
+    fr.onload = ()=>{ try{ ingest(decodeBytes(fr.result), f.name); }catch(err){ alert(f.name+': '+err.message); } };
+    fr.readAsArrayBuffer(f);
+  });
+}
+/* favicon a partir da mesma marca já embutida no CSS */
+(()=>{ const v = getComputedStyle(document.documentElement).getPropertyValue('--logo').trim();
+  const m = v.match(/url\(['"]?(data:[^'")]+)['"]?\)/);
+  if(m){ const l=document.createElement('link'); l.rel='icon'; l.href=m[1]; document.head.appendChild(l); } })();
+
+document.getElementById('btnLoad').onclick = ()=>document.getElementById('file').click();
+document.getElementById('file').onchange = e=>{ lerArquivos(e.target.files); e.target.value=''; };
+document.getElementById('fileProg').onchange = e=>{ if(e.target.files[0]) carregarProgresso(e.target.files[0]); e.target.value=''; };
+document.getElementById('btnExport').onclick = exportPend;
+document.getElementById('btnPrint').onclick = ()=>window.print();
+document.getElementById('btnTheme').onclick = ()=>{
+  const cur=document.documentElement.getAttribute('data-theme');
+  document.documentElement.setAttribute('data-theme', cur==='dark'?'light':'dark');
+};
+const dz=document.getElementById('drop');
+['dragenter','dragover'].forEach(ev=>document.addEventListener(ev,e=>{e.preventDefault();dz.classList.add('on');}));
+document.addEventListener('dragleave',e=>{ if(e.relatedTarget===null) dz.classList.remove('on'); });
+document.addEventListener('drop',e=>{ e.preventDefault(); dz.classList.remove('on'); lerArquivos(e.dataTransfer.files||[]); });
+
+refresh();
+</script>
+</body>
+</html>
